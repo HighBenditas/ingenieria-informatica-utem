@@ -1,0 +1,53 @@
+---
+import Cite from "./Cite.astro";
+import HeroCarousel from "./HeroCarousel.astro";
+import { admissions, site } from "../data/site";
+---
+
+<section id="inicio" class="hero">
+  <HeroCarousel />
+  <div class="container">
+    <dl class="facts">
+      <div>
+        <dt>Duración</dt>
+        <dd>
+          <strong>8</strong> semestres <Cite source="carrera" />
+        </dd>
+      </div>
+      <div>
+        <dt>Jornada</dt>
+        <dd>
+          Diurna <Cite source="carrera" />
+        </dd>
+      </div>
+      <div>
+        <dt>Título profesional</dt>
+        <dd>
+          Ingeniera / Ingeniero
+          <br />
+          en Informática <Cite source="carrera" />
+        </dd>
+      </div>
+      <div>
+        <dt>Grado académico</dt>
+        <dd>
+          Licenciada / Licenciado
+          <br />
+          en Informática <Cite source="carrera" />
+        </dd>
+      </div>
+      <div>
+        <dt>Sede o campus</dt>
+        <dd>
+          {site.campus} <Cite source="malla" />
+        </dd>
+      </div>
+      <div>
+        <dt>Código DEMRE</dt>
+        <dd>
+          {admissions.code} <Cite source="oferta" />
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>

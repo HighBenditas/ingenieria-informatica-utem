@@ -1,0 +1,110 @@
+[
+  {
+    "id": "semestre-1",
+    "semester": 1,
+    "year": 1,
+    "courses": [
+      "Habilidades de Razonamiento Lógico",
+      "Taller de Matemática",
+      "Taller de Ciencia y Tecnología",
+      "Introducción a la Ingeniería en Informática",
+      "Design Thinking",
+      "Algoritmos y Programación"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-2",
+    "semester": 2,
+    "year": 1,
+    "courses": [
+      "Habilidades de Trabajo Académico",
+      "Cálculo Diferencial",
+      "Álgebra Clásica",
+      "Mecánica Clásica",
+      "Estructura de Datos",
+      "Electivo Formación General"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-3",
+    "semester": 3,
+    "year": 2,
+    "courses": [
+      "Cálculo Integral",
+      "Álgebra Superior",
+      "Electromagnetismo",
+      "Base de Datos",
+      "Lenguaje de Programación"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-4",
+    "semester": 4,
+    "year": 2,
+    "courses": [
+      "Estadística y Probabilidades",
+      "Ingeniería Ambiental",
+      "Taller de Principios de Sustentabilidad",
+      "Grafos y Lenguajes Formales",
+      "Sistema de Información",
+      "Arquitectura de Computadores"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-5",
+    "semester": 5,
+    "year": 3,
+    "courses": [
+      "Circuitos Eléctricos",
+      "Principios de Economía",
+      "Inglés I",
+      "Desarrollo Ágil",
+      "Sistemas Operativos",
+      "Análisis de Algoritmos"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-6",
+    "semester": 6,
+    "year": 3,
+    "courses": [
+      "Inglés II",
+      "Fundamentos de Data Science",
+      "Ciberseguridad",
+      "Evaluación de Proyectos Informáticos",
+      "Ingeniería de Software",
+      "Redes y Comunicación de Datos"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-7",
+    "semester": 7,
+    "year": 4,
+    "courses": [
+      "Gestión de Proyectos Informáticos",
+      "Computación en la Nube",
+      "Computación Web y Móvil",
+      "Electivo de Formación Especializada I",
+      "Electivo de Formación Especializada II",
+      "Trabajo de Título I"
+    ],
+    "source": "malla"
+  },
+  {
+    "id": "semestre-8",
+    "semester": 8,
+    "year": 4,
+    "courses": [
+      "Taller de Innovación y Emprendimiento",
+      "Trabajo de Título II",
+      "Práctica Profesional"
+    ],
+    "source": "malla"
+  }
+]

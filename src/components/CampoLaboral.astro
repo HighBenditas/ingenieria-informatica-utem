@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import { employmentIndicators } from "../data/site";
+import Cite from "./Cite.astro";
+const areas = (await getCollection("laboral")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section id="campo-laboral" class="section dark-section">
+  <div class="container work-grid">
+    <div class="work-intro">
+      <p class="eyebrow">04 — CAMPO LABORAL</p>
+      <h2>
+        Un mundo digital.
+        <br />
+        Muchas formas
+        <br />
+        de ser parte.
+      </h2>
+      <p>
+        ¿Dónde podrías trabajar? En organizaciones públicas, privadas y del
+        tercer sector. <Cite source="carrera" />
+      </p>
+      <a href="#admision" class="text-link light-link">
+        Da el siguiente paso <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="work-list">
+      {areas.map(({ data }, index) => (
+        <article>
+          <span class="mono">0{index + 1}</span>
+          <div>
+            <h3>{data.title}</h3>
+            <p>
+              {data.description} <Cite source={data.source.id} />
+            </p>
+          </div>
+          <span aria-hidden="true">↗</span>
+        </article>
+      ))}
+    </div>
+  </div>
+  <div class="container">
+    {employmentIndicators.length > 0 ? (
+      <dl class="indicators">
+        {employmentIndicators.map((item) => (
+          <div>
+            <dt>{item.label}</dt>
+            <dd>
+              {item.value} · {item.year} <a href={item.sourceUrl}>Fuente</a>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    ) : (
+      <p class="work-note">
+        Una decisión informada también considera el futuro laboral. Consulta{" "}
+        <a href="https://www.mifuturo.cl/">Mi Futuro del Mineduc</a> para
+        explorar indicadores. <Cite source="mifuturo" /> Aquí no mostramos
+        cifras sin año estadístico verificable.
+      </p>
+    )}
+  </div>
+</section>

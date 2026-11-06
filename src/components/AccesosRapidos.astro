@@ -1,0 +1,88 @@
+---
+import { admissions } from "../data/site";
+
+const links = [
+  { href: "#malla", label: "Malla curricular" },
+  { href: "#perfil", label: "Perfil de egreso" },
+  { href: "#admision", label: `Admisión ${admissions.process}` },
+  { href: "#preguntas", label: "Preguntas frecuentes" },
+];
+---
+
+<nav class="quick-links container" aria-labelledby="quick-links-title">
+  <h2 id="quick-links-title">¿Qué te gustaría conocer?</h2>
+  <ul>
+    {links.map(({ href, label }) => (
+      <li>
+        <a href={href}>
+          {label}
+          <span aria-hidden="true">↓</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .quick-links {
+    padding-block: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .quick-links h2 {
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .quick-links ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px 24px;
+    padding: 0;
+    margin: 0;
+  }
+  .quick-links li {
+    min-width: 0;
+  }
+  .quick-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 48px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      color 0.15s ease,
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .quick-links a span {
+    color: var(--blue);
+  }
+  .quick-links a:hover,
+  .quick-links a:focus-visible {
+    color: var(--blue);
+    background: var(--pale);
+    border-bottom-color: var(--blue);
+  }
+  @media (max-width: 900px) {
+    .quick-links ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .quick-links ul {
+      gap: 8px 16px;
+    }
+    .quick-links a {
+      font-size: 0.8rem;
+      gap: 8px;
+    }
+  }
+</style>

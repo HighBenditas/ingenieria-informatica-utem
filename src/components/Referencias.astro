@@ -1,0 +1,87 @@
+---
+import { getCollection } from "astro:content";
+import { pendingVerification, site } from "../data/site";
+import { heroSlides } from "../data/hero";
+const references = (await getCollection("referencias")).sort(
+  (a, b) => a.data.number - b.data.number,
+);
+---
+
+<section id="referencias" class="section references-section">
+  <div class="container">
+    <p class="eyebrow">08 — INFORMACIÓN TRAZABLE</p>
+    <div class="split-heading">
+      <h2>Fuentes y referencias</h2>
+      <p>
+        Revisión de contenido:{" "}
+        <time datetime="2026-11-05">{site.reviewDate}</time>. Las citas del
+        sitio te llevan a estas fuentes.
+      </p>
+    </div>
+    <details class="references-details">
+      <summary>
+        Consultar las {references.length} referencias{" "}
+        <span aria-hidden="true">+</span>
+      </summary>
+      <ol class="reference-list">
+        {references.map(({ id, data }) => (
+          <li id={"ref-" + id} value={data.number}>
+            <span>
+              {data.author} ({data.date}).{" "}
+              <a href={data.url}>
+                <cite>{data.title}</cite>
+              </a>
+              . Recuperado el 5 de noviembre de 2026.
+            </span>
+          </li>
+        ))}
+      </ol>
+    </details>
+    <details class="references-details">
+      <summary>
+        Transparencia editorial y datos por confirmar{" "}
+        <span aria-hidden="true">+</span>
+      </summary>
+      <p>
+        Este proyecto adapta el lenguaje para futuros estudiantes. Los ejemplos
+        y las comparaciones interpretativas están identificados. Los gráficos
+        SVG son originales del proyecto. Los íconos de redes sociales son de{" "}
+        <a href="https://fontawesome.com/">Font Awesome Free</a>, utilizados
+        bajo{" "}
+        <a href="https://fontawesome.com/license/free">licencia CC BY 4.0</a>.
+        Las fotografías del inicio son referenciales y no muestran instalaciones
+        ni estudiantes de UTEM. El logotipo del encabezado proviene del{" "}
+        <a href="https://www.utem.cl/wp-content/themes/utem8oct/img/logo-utem.svg">
+          sitio institucional de UTEM
+        </a>
+        . La paleta parte del manual institucional.{" "}
+        <a href="#ref-identidad" class="citation">
+          [10]
+        </a>
+      </p>
+      <ul>
+        {pendingVerification.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </details>
+    <details id="creditos-imagenes" class="references-details" open>
+      <summary>
+        Créditos de las fotografías <span aria-hidden="true">+</span>
+      </summary>
+      <p>
+        Fotografías de archivo utilizadas con{" "}
+        <a href="https://www.pexels.com/license/">licencia Pexels</a>. No
+        representan a UTEM ni implican respaldo de las personas retratadas.
+      </p>
+      <ul>
+        {heroSlides.map((slide) => (
+          <li>
+            <a href={slide.source}>{slide.label}</a> · Fotografía de{" "}
+            {slide.author}, Pexels.
+          </li>
+        ))}
+      </ul>
+    </details>
+  </div>
+</section>

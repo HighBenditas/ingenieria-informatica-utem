@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "order": 1,
+    "title": "Desarrollo de software",
+    "description": "Crear productos y soluciones informáticas para organizaciones.",
+    "source": "carrera"
+  },
+  {
+    "id": "2",
+    "order": 2,
+    "title": "Sistemas de información",
+    "description": "Administrar información y recursos tecnológicos.",
+    "source": "carrera"
+  },
+  {
+    "id": "3",
+    "order": 3,
+    "title": "Infraestructura y redes",
+    "description": "Gestionar redes de datos y recursos computacionales.",
+    "source": "carrera"
+  },
+  {
+    "id": "4",
+    "order": 4,
+    "title": "Seguridad de la información",
+    "description": "Implementar políticas de seguridad y auditoría informática.",
+    "source": "carrera"
+  },
+  {
+    "id": "5",
+    "order": 5,
+    "title": "Proyectos tecnológicos",
+    "description": "Planificar y gestionar proyectos y transformación tecnológica.",
+    "source": "carrera"
+  }
+]

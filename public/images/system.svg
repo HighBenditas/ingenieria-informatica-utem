@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+<defs><pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0v30" fill="none" stroke="#25425a" stroke-width=".6"/></pattern></defs>
+<rect width="600" height="450" fill="#102b45"/><rect width="600" height="450" fill="url(#grid)"/>
+<g fill="none" stroke="#55768e" stroke-width="1.5"><path d="M300 110v48m0 120v55M165 218H85v113h65m285-113h80V110h-65M150 350h100m100 0h100M165 218v-110h65m205 110v130"/><circle cx="300" cy="218" r="146" stroke-dasharray="3 8"/></g>
+<g fill="#102b45" stroke="#90c85a" stroke-width="1.5"><path d="m300 143 108 62v44l-108 63-108-63v-44z"/><path d="m192 205 108 63 108-63M300 268v44"/><path d="m300 123 108 62-108 63-108-63z" fill="#204860"/></g>
+<g fill="none" stroke="#b0e181" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m276 171-14 12 14 12m48-24 14 12-14 12m-17-31-14 39"/></g>
+<g fill="#183b55" stroke="#52768f"><rect x="229" y="50" width="142" height="60" rx="4"/><rect x="25" y="188" width="140" height="60" rx="4"/><rect x="435" y="80" width="140" height="60" rx="4"/><rect x="150" y="328" width="125" height="52" rx="4"/><rect x="350" y="328" width="125" height="52" rx="4"/></g>
+<g fill="#e1ecf4" font-family="Consolas,monospace" font-size="14" text-anchor="middle"><text x="300" y="85">01 / IDEA</text><text x="95" y="223">02 / CÓDIGO</text><text x="505" y="115">03 / DATOS</text><text x="212" y="359">REDES</text><text x="412" y="359">SOLUCIÓN</text></g>
+<g fill="#a8dc76"><circle cx="300" cy="134" r="4"/><circle cx="300" cy="328" r="4"/><circle cx="85" cy="280" r="4"/><circle cx="515" cy="178" r="4"/></g>
+<path d="M37 35h22m-22 0v22m526 358h-22m22 0v-22" fill="none" stroke="#79bf27" stroke-width="2"/>
+<text x="300" y="415" text-anchor="middle" fill="#9db8cb" font-family="Consolas,monospace" font-size="10" letter-spacing="2">CONSTRUIR ES CONECTAR</text>
+</svg>

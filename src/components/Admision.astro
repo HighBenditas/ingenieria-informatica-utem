@@ -1,0 +1,113 @@
+---
+import { admissions, site } from "../data/site";
+import Cite from "./Cite.astro";
+import Icon from "./Icon.astro";
+---
+
+<section id="admision" class="section admissions-section">
+  <div class="container">
+    <p class="eyebrow">06 — ADMISIÓN {admissions.process}</p>
+    <div class="split-heading">
+      <h2>
+        Tu próxima etapa
+        <br />
+        empieza aquí.
+      </h2>
+      <p>
+        Tu camino hacia Ingeniería en Informática. Código DEMRE{" "}
+        <strong>{admissions.code}</strong>. <Cite source="oferta" />
+      </p>
+    </div>
+    <ol class="admissions-steps">
+      <li>
+        <span class="step-number">01</span>
+        <h3>Explora tu vía de ingreso</h3>
+        <p>
+          Revisa la admisión regular vía PAES y las alternativas de Acceso
+          Directo, con sus propios requisitos. <Cite source="admision" />
+          <Cite source="directo" />
+        </p>
+        <a href="https://accesodirecto.utem.cl/">Conocer Acceso Directo ↗</a>
+      </li>
+      <li>
+        <span class="step-number">02</span>
+        <h3>Revisa los requisitos</h3>
+        <p>
+          La ficha 2027 informa un promedio mínimo de{" "}
+          {admissions.minimumAverage} puntos entre Lectora y M1, sin mínimo
+          ponderado. Revisa además las condiciones generales del Sistema de
+          Acceso. <Cite source="oferta" />
+        </p>
+      </li>
+      <li>
+        <span class="step-number">03</span>
+        <h3>Ten presente el calendario</h3>
+        <p>
+          PAES Regular: 30 de noviembre, 1 y 2 de diciembre de 2026.
+          Postulación: del 4 de enero de 2027 a las 09:00 al 7 de enero a las
+          13:00, hora de Chile continental. <Cite source="calendario" />
+        </p>
+        <a href="https://demre.cl/calendario/calendario-proceso-2027">
+          Ver calendario completo ↗
+        </a>
+      </li>
+    </ol>
+    <div class="weights-block">
+      <div>
+        <h3>¿Cómo se pondera tu puntaje?</h3>
+        <p>
+          Proceso 2027 · Ficha referencial UTEM <Cite source="oferta" />
+        </p>
+      </div>
+      <dl class="weights">
+        {admissions.weights.map((weight) => (
+          <div>
+            <dt>{weight.label}</dt>
+            <dd>
+              {weight.value}
+              <span>%</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    <p class="small-note">
+      Ciencias e Historia son alternativas de una misma ponderación, no se
+      suman. La ficha institucional advierte que los datos pueden cambiar:
+      verifica la oferta definitiva y los requisitos completos antes de
+      postular.
+    </p>
+    <div class="admissions-bottom">
+      <a class="button" href={site.admissionsUrl}>
+        Revisar admisión oficial UTEM <Icon name="arrow" size={20} />
+      </a>
+      <span>Tu decisión, con información oficial.</span>
+    </div>
+    <aside class="admissions-resources" aria-labelledby="admissions-resources-title">
+      <div>
+        <p class="eyebrow">INFORMACIÓN OFICIAL UTEM</p>
+        <h3 id="admissions-resources-title">Becas, financiamiento y orientación</h3>
+      </div>
+      <ul>
+        <li>
+          <a href="https://bienestarestudiantil.utem.cl/becas-y-beneficios/">
+            <strong>Becas y beneficios</strong>
+            <span>Financiamiento y apoyos estudiantiles UTEM</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.utem.cl/admision/preguntas-frecuentes/">
+            <strong>Aranceles</strong>
+            <span>Información institucional sobre aranceles y matrícula</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.utem.cl/admision/">
+            <strong>Orientación de admisión</strong>
+            <span>Canales oficiales para resolver dudas</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>

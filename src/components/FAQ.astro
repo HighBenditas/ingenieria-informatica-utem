@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Cite from "./Cite.astro";
+const questions = (await getCollection("faq")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section id="preguntas" class="section container faq-grid">
+  <div>
+    <p class="eyebrow">07 — PREGUNTAS FRECUENTES</p>
+    <h2>
+      Las preguntas
+      <br />
+      también abren
+      <br />
+      caminos.
+    </h2>
+    <p>Un primer punto de orientación para seguir explorando.</p>
+    <p class="small-note">
+      Selección inicial del equipo, sujeta a validación con futuros postulantes.
+    </p>
+  </div>
+  <div class="faq-list">
+    {questions.map(({ data }) => (
+      <details>
+        <summary>
+          {data.question}
+          <span aria-hidden="true">+</span>
+        </summary>
+        <p>
+          {data.answer} <Cite source={data.source.id} />
+          {data.internalLink && (
+            <>
+              {" "}
+              <a href={data.internalLink.href}>{data.internalLink.label}</a>.
+            </>
+          )}
+        </p>
+      </details>
+    ))}
+  </div>
+</section>

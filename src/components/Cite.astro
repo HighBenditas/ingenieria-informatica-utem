@@ -1,0 +1,25 @@
+---
+import { getEntry } from "astro:content";
+interface Props {
+  source: string;
+  variant?: "number" | "source";
+}
+const { source, variant = "number" } = Astro.props;
+const entry = await getEntry("referencias", source);
+if (!entry) throw new Error("Referencia inexistente: " + source);
+---
+
+<a
+  class={variant === "source" ? "citation citation-source" : "citation"}
+  href={variant === "source" ? entry.data.url : "#ref-" + source}
+  aria-label={`Fuente ${entry.data.number}: ${entry.data.title}`}
+>
+  {variant === "source" ? (
+    <>
+      {entry.data.title}
+      <span aria-hidden="true">↗</span>
+    </>
+  ) : (
+    <>[{entry.data.number}]</>
+  )}
+</a>

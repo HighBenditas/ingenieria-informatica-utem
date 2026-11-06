@@ -1,0 +1,55 @@
+[
+  {
+    "id": "1",
+    "order": 1,
+    "question": "¿Necesito saber programar antes de ingresar?",
+    "answer": "La malla incluye Algoritmos y Programación en el primer semestre. Esto no equivale a una declaración sobre requisitos previos; consulta a Admisión si necesitas orientación sobre tu preparación.",
+    "source": "malla"
+  },
+  {
+    "id": "2",
+    "order": 2,
+    "question": "¿Cuánto dura la carrera?",
+    "answer": "La duración formal es de ocho semestres en jornada diurna.",
+    "source": "carrera"
+  },
+  {
+    "id": "3",
+    "order": 3,
+    "question": "¿Qué título y grado obtengo?",
+    "answer": "El título es Ingeniera o Ingeniero en Informática, y el grado es Licenciada o Licenciado en Informática.",
+    "source": "carrera"
+  },
+  {
+    "id": "4",
+    "order": 4,
+    "question": "¿Dónde se imparte?",
+    "answer": "El folleto indica Campus Ñuñoa, Av. José Pedro Alessandri 1242, Ñuñoa, Santiago.",
+    "source": "malla"
+  },
+  {
+    "id": "5",
+    "order": 5,
+    "question": "¿Dónde encuentro el plan de estudios oficial?",
+    "answer": "Puedes revisar la malla y abrir el folleto PDF desde la sección «Un camino. Ocho semestres». Comprueba con la Escuela la versión del plan correspondiente a tu ingreso.",
+    "internalLink": {
+      "href": "#malla",
+      "label": "Ir a la malla curricular"
+    },
+    "source": "malla"
+  },
+  {
+    "id": "6",
+    "order": 6,
+    "question": "¿Cómo puedo postular?",
+    "answer": "Revisa la vía PAES y la oferta del proceso correspondiente en el portal oficial de admisión UTEM. La sección de admisión de esta guía reúne enlaces para comenzar.",
+    "source": "admision"
+  },
+  {
+    "id": "7",
+    "order": 7,
+    "question": "¿La acreditación de la universidad es la certificación de la carrera?",
+    "answer": "Son reconocimientos distintos. La sección de respaldo identifica por separado la acreditación de UTEM y la certificación de Ingeniería en Informática.",
+    "source": "carrera"
+  }
+]

@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+import "../styles/experience.css";
+import { site } from "../data/site";
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = site.title, description = site.description } = Astro.props;
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : undefined;
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#004eaa" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {Astro.site && (
+      <meta
+        property="og:image"
+        content={new URL("/images/social.png", Astro.site).href}
+      />
+    )}
+    {Astro.site && <meta property="og:image:width" content="1200" />}
+    {Astro.site && <meta property="og:image:height" content="630" />}
+    {Astro.site && (
+      <meta
+        property="og:image:alt"
+        content="Ingeniería en Informática UTEM. Transforma ideas en tecnología. Proyecto estudiantil."
+      />
+    )}
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">
+      Saltar al contenido principal
+    </a>
+    <slot />
+    <script>
+      import "../scripts/experience";
+    </script>
+  </body>
+</html>

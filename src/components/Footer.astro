@@ -1,0 +1,31 @@
+---
+import { site } from "../data/site";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <a class="footer-brand" href="#inicio">
+        Informática <strong>UTEM</strong>
+        <span>Ideas que se convierten en posibilidades.</span>
+      </a>
+      <nav aria-label="Enlaces del pie de página">
+        <a href="https://www.utem.cl/">Sitio institucional ↗</a>
+        <a href={site.admissionsUrl}>Admisión UTEM ↗</a>
+        <a href="#referencias">Fuentes y referencias</a>
+        <a href="#inicio">Volver al inicio ↑</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        Proyecto académico estudiantil · EFE685, Electivo de Computación Móvil.
+        <br />
+        Este sitio no es una página oficial de la Universidad Tecnológica
+        Metropolitana.
+      </p>
+      <span>DISEÑADO PARA EXPLORAR.</span>
+    </div>
+    <SocialLinks />
+  </div>
+</footer>

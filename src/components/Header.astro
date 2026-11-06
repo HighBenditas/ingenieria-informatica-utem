@@ -1,0 +1,49 @@
+---
+import { navigation, site } from "../data/site";
+import Icon from "./Icon.astro";
+---
+
+<div class="academic-banner">
+  <div class="container">
+    Una guía para tu próxima etapa{" "}
+    <span>Proyecto académico estudiantil · Sitio no oficial</span>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a
+      href="#inicio"
+      class="brand"
+      aria-label={`Ingeniería en Informática, ${site.university}, inicio`}
+    >
+      <img
+        class="brand-logo"
+        src="/images/logo-utem.svg"
+        width="241"
+        height="83"
+        alt="Universidad Tecnológica Metropolitana"
+      />
+      <span class="brand-copy">
+        <span class="brand-title">Ingeniería en Informática</span>
+      </span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {navigation.slice(1, 4).map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <a class="button small header-cta" href="#admision">
+      Cómo postular <Icon name="arrow" size={18} />
+    </a>
+    <details class="mobile-menu">
+      <summary>
+        Menú <span aria-hidden="true">☰</span>
+      </summary>
+      <nav aria-label="Navegación móvil">
+        {navigation.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

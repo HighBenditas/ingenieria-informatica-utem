@@ -1,0 +1,101 @@
+[
+  {
+    "id": "carrera",
+    "number": 1,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "s. f.",
+    "title": "Ingeniería en Informática",
+    "url": "https://www.utem.cl/carreras/ingenieria-en-informatica/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "malla",
+    "number": 2,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "s. f.",
+    "title": "Ingeniería en Informática [Folleto y malla curricular]",
+    "url": "https://www.utem.cl/wp-content/uploads/2026/05/INGENIERIA_EN_INFORMATICA_UTEM.pdf",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "civil",
+    "number": 3,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "s. f.",
+    "title": "Ingeniería Civil en Computación mención Informática",
+    "url": "https://www.utem.cl/carreras/ingenieria-civil-en-computacion-mencion-informatica/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "datos",
+    "number": 4,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "s. f.",
+    "title": "Ingeniería Civil en Ciencia de Datos",
+    "url": "https://www.utem.cl/carreras/ingenieria-civil-en-ciencia-de-datos/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "oferta",
+    "number": 5,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "2026",
+    "title": "Oferta académica admisión 2027: Ponderaciones, puntajes y vacantes",
+    "url": "https://www.utem.cl/wp-content/uploads/2026/09/Oferta-Academica-UTEM-2027.pdf",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "admision",
+    "number": 6,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "s. f.",
+    "title": "Admisión Acceso Vía PAES",
+    "url": "https://www.utem.cl/admision/admision-acceso-via-paes/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "directo",
+    "number": 7,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "s. f.",
+    "title": "Acceso Directo",
+    "url": "https://accesodirecto.utem.cl/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "calendario",
+    "number": 8,
+    "author": "Departamento de Evaluación, Medición y Registro Educacional",
+    "date": "s. f.",
+    "title": "Calendario del Proceso de Admisión 2027",
+    "url": "https://demre.cl/calendario/calendario-proceso-2027",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "acreditacion",
+    "number": 9,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "2026, 18 de octubre",
+    "title": "UTEM acreditada Nivel Avanzado",
+    "url": "https://noticias.utem.cl/2026/10/18/utem-acreditada-nivel-avanzado/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "identidad",
+    "number": 10,
+    "author": "Universidad Tecnológica Metropolitana",
+    "date": "2026",
+    "title": "Manual de identidad visual UTEM",
+    "url": "https://www.utem.cl/wp-content/uploads/2026/07/MANUAL_UTEM_2026.pdf",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "mifuturo",
+    "number": 11,
+    "author": "Ministerio de Educación de Chile",
+    "date": "s. f.",
+    "title": "Mi Futuro",
+    "url": "https://www.mifuturo.cl/",
+    "consulted": "2026-11-05"
+  }
+]

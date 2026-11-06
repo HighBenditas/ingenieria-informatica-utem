@@ -1,0 +1,115 @@
+---
+import { getCollection } from "astro:content";
+import { site } from "../data/site";
+const semesters = (await getCollection("malla")).sort(
+  (a, b) => a.data.semester - b.data.semester,
+);
+if (
+  semesters.length !== 8 ||
+  new Set(semesters.map((s) => s.data.semester)).size !== 8
+) {
+  throw new Error("La malla debe contener los ocho semestres, sin duplicados.");
+}
+---
+
+<section id="malla" class="section curriculum-section">
+  <div class="container curriculum-container">
+    <p class="eyebrow">03 — TU RECORRIDO</p>
+    <div class="split-heading">
+      <h2>
+        Un camino.
+        <br />
+        <span class="blue-text">Ocho semestres.</span>
+      </h2>
+    </div>
+    <div class="curriculum">
+      <div class="curriculum-toolbar">
+        <fieldset class="semester-filter">
+          <legend>Destacar un semestre</legend>
+          {[0, ...semesters.map(({ data }) => data.semester)].map(
+            (semester) => (
+              <label>
+                <input
+                  type="radio"
+                  name="academic-semester"
+                  value={semester}
+                  checked={semester === 0}
+                />
+                <span>
+                  {semester === 0
+                    ? "Ver toda la malla"
+                    : "Semestre " + semester}
+                </span>
+              </label>
+            ),
+          )}
+        </fieldset>
+        <div class="curriculum-key" aria-label="Estados de la vista">
+          <span>
+            <i class="key-past" aria-hidden="true"></i> Semestres anteriores
+          </span>
+          <span>
+            <i class="key-current" aria-hidden="true"></i> Semestre seleccionado
+          </span>
+          <span>
+            <i class="key-future" aria-hidden="true"></i> Semestres siguientes
+          </span>
+        </div>
+      </div>
+      <p id="curriculum-scroll-help" class="curriculum-scroll-help">
+        <span aria-hidden="true">↔</span> Desliza la malla horizontalmente para
+        recorrer los ocho semestres. Con teclado, enfoca la malla y usa las
+        flechas.
+      </p>
+      <div
+        class="curriculum-scroll"
+        role="region"
+        aria-label="Malla curricular: ocho semestres"
+        aria-describedby="curriculum-scroll-help"
+        tabindex="0"
+      >
+        <div class="semester-grid">
+          {semesters.map(({ data }) => (
+            <article
+              class="semester"
+              data-year={data.year}
+              data-semester={data.semester}
+            >
+              <div class="semester-heading">
+                <span class="mono">AÑO {data.year}</span>
+                <h3>Semestre {data.semester}</h3>
+                <p class="semester-state">
+                  <span class="state-default">Plan de estudios</span>
+                  <span class="state-past">Semestre anterior</span>
+                  <span class="state-current">Seleccionado</span>
+                  <span class="state-future">Más adelante</span>
+                </p>
+              </div>
+              <ul>
+                {data.courses.map((course, index) => (
+                  <li class="course-card">
+                    <span class="course-number" aria-hidden="true">
+                      {(index + 1).toString().padStart(2, "0")}
+                    </span>
+                    <span class="course-name">{course}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div class="curriculum-source-link">
+        <a class="text-link" href={site.curriculumUrl}>
+          Consultar malla oficial <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+    <p
+      class="sr-only"
+      data-semester-announcement
+      role="status"
+      aria-live="polite"
+    ></p>
+  </div>
+</section>
