@@ -598,7 +598,7 @@ summary {
 }
 .work-list article {
   display: grid;
-  grid-template-columns: 30px 1fr 20px;
+  grid-template-columns: 30px minmax(0, 1fr);
   gap: 20px;
   border-bottom: 1px solid #3b5267;
   padding: 23px 0;
@@ -1263,7 +1263,7 @@ summary {
   }
   .work-list article {
     gap: 14px;
-    grid-template-columns: 24px 1fr 14px;
+    grid-template-columns: 24px minmax(0, 1fr);
   }
   .work-list h3 {
     font-size: 1.14rem;

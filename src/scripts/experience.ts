@@ -162,6 +162,38 @@ function setupReveals(): void {
   revealTarget(document.getElementById(location.hash.slice(1)));
 }
 
+function setupMobileMenu(): void {
+  const menu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+  const summary = menu?.querySelector<HTMLElement>("summary");
+  if (!menu || !summary) return;
+
+  menu.addEventListener("click", (event) => {
+    const link = event.target instanceof Element
+      ? event.target.closest<HTMLAnchorElement>('a[href^="#"]')
+      : null;
+    if (!link || event.defaultPrevented || event.button !== 0 ||
+      event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const target = document.getElementById(link.hash.slice(1));
+    if (!target) return;
+    menu.open = false;
+    // Keep native anchor scrolling and move keyboard focus out of the closed menu.
+    if (!target.hasAttribute("tabindex")) {
+      target.tabIndex = -1;
+      target.addEventListener("blur", () => target.removeAttribute("tabindex"), {
+        once: true,
+      });
+    }
+    target.focus({ preventScroll: true });
+  });
+  menu.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.open) {
+      event.preventDefault();
+      menu.open = false;
+      summary.focus();
+    }
+  });
+}
+
 function setupCurriculum(): void {
   const root = document.querySelector<HTMLElement>(".curriculum");
   const scroller = root?.querySelector<HTMLElement>(".curriculum-scroll");
@@ -211,4 +243,5 @@ document
   .querySelectorAll<HTMLElement>("[data-carousel]")
   .forEach(setupCarousel);
 setupReveals();
+setupMobileMenu();
 setupCurriculum();

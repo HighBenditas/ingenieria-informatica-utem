@@ -434,7 +434,7 @@
 }
 .course-name {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.45;
   padding-top: 10px;
   overflow-wrap: anywhere;
@@ -891,7 +891,7 @@
     gap: 12px;
   }
   .course-name {
-    font-size: 0.8rem;
+    font-size: 0.875rem;
   }
   .semester h3 {
     font-size: 1rem;
