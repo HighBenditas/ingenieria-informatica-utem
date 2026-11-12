@@ -1434,7 +1434,7 @@ summary {
 }
 
 .video-section {
-  padding-block: 56px;
+  padding-block: 0 56px;
 }
 
 .video-section h2 {
@@ -1450,4 +1450,12 @@ summary {
 .video-section .small-note {
   max-width: none;
   margin-top: 14px;
+}
+@media (max-width: 640px) {
+  .video-section {
+    padding-block: 0 32px;
+  }
+  .video-section h2 {
+    margin-bottom: 20px;
+  }
 }
