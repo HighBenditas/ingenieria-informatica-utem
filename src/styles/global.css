@@ -593,6 +593,10 @@ summary {
 .work-intro .citation {
   color: #cce2ff;
 }
+.work-intro .title-second {
+  display: block;
+  margin-top: 0.3em;
+}
 .light-link {
   color: #a8db7d;
 }
@@ -1267,9 +1271,7 @@ summary {
     grid-template-columns: 1fr;
     gap: 35px;
   }
-  .work-intro h2 br:last-child {
-    display: none;
-  }
+
   .work-intro p:not(.eyebrow) {
     max-width: none;
   }
@@ -1352,9 +1354,7 @@ summary {
     min-height: 68px;
     padding-inline: 0;
   }
-  .faq-grid h2 br:last-child {
-    display: none;
-  }
+ 
   .faq-grid > div > p:not(.eyebrow) {
     max-width: none;
   }

@@ -305,9 +305,9 @@
   content: "";
   position: absolute;
   width: 12px;
-  height: 1px;
+  height: 2px;
   background: #53644c;
-  top: 5px;
+  top: 4px;
   left: -1px;
   transform: rotate(-30deg);
 }
@@ -317,6 +317,7 @@
 }
 .key-future {
   background: #e8ecef;
+  border-style: dashed;
 }
 .curriculum-explanation {
   margin-bottom: 24px;
@@ -330,7 +331,7 @@
   color: var(--muted);
   margin-bottom: 15px;
 }
-.curriculum-scroll-help > span {
+.curriculum-scroll-help > span[aria-hidden] {
   font-size: 1.3rem;
 }
 .curriculum-scroll {
@@ -879,7 +880,10 @@
   }
   .curriculum-key {
     gap: 10px 14px;
-    font-size: 0.61rem;
+    font-size: 0.75rem;
+  }
+  .keyboard-hint {
+    display: none;
   }
   .curriculum-explanation {
     font-size: 0.74rem;
@@ -898,7 +902,7 @@
     font-size: 0.64rem;
   }
   .semester ul {
-    grid-auto-rows: 150px;
+    grid-auto-rows: 120px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
