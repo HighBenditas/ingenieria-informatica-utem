@@ -145,9 +145,7 @@
 .carousel-controls button:hover {
   background: #ffffff24;
 }
-.carousel-arrow {
-  font-size: 1.3rem !important;
-}
+
 .carousel-dots {
   display: flex;
 }

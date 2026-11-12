@@ -9,8 +9,6 @@ function setupCarousel(root: HTMLElement): void {
   const controls = root.querySelector<HTMLElement>("[data-carousel-controls]");
   const caption = root.querySelector<HTMLElement>("[data-carousel-caption]");
   const counter = root.querySelector<HTMLElement>("[data-carousel-counter]");
-  const previous = root.querySelector<HTMLButtonElement>("[data-previous]");
-  const next = root.querySelector<HTMLButtonElement>("[data-next]");
   const play = root.querySelector<HTMLButtonElement>("[data-play]");
   const playLabel = root.querySelector<HTMLElement>("[data-play-label]");
   const playIcon = root.querySelector<HTMLElement>("[data-play-icon]");
@@ -19,8 +17,6 @@ function setupCarousel(root: HTMLElement): void {
   );
   if (
     !controls ||
-    !previous ||
-    !next ||
     !play ||
     !playLabel ||
     !playIcon ||
@@ -79,8 +75,7 @@ function setupCarousel(root: HTMLElement): void {
       updatePlayback();
     }
   };
-  previous.addEventListener("click", () => show(current - 1, true));
-  next.addEventListener("click", () => show(current + 1, true));
+  
   buttons.forEach((button, index) =>
     button.addEventListener("click", () => show(index, true)),
   );

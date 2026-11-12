@@ -39,12 +39,6 @@ import Icon from "./Icon.astro";
       </div>
     ))}
   </div>
-  <p class="slide-caption">
-    <span class="mono" data-carousel-counter>
-      01 /
-    </span>
-    <span data-carousel-caption>{heroSlides[0]?.label}</span>
-  </p>
   <div class="container hero-content">
     <div class="hero-copy">
       <p class="eyebrow">
@@ -71,14 +65,6 @@ import Icon from "./Icon.astro";
   </div>
   <div class="container hero-bottom">
     <div class="carousel-controls" data-carousel-controls hidden>
-      <button
-        type="button"
-        class="carousel-arrow"
-        data-previous
-        aria-label="Imagen anterior"
-      >
-        <span aria-hidden="true">←</span>
-      </button>
       <div class="carousel-dots" role="group" aria-label="Elegir imagen">
         {heroSlides.map((slide, index) => (
           <button
@@ -98,17 +84,6 @@ import Icon from "./Icon.astro";
         aria-label="Imagen siguiente"
       >
         <span aria-hidden="true">→</span>
-      </button>
-      <button
-        type="button"
-        class="carousel-play"
-        data-play
-        aria-label="Pausar carrusel"
-      >
-        <span aria-hidden="true" data-play-icon>
-          Ⅱ
-        </span>
-        <span data-play-label>Pausar</span>
       </button>
     </div>
     <a class="hero-credit" href="#creditos-imagenes">

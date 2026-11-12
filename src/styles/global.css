@@ -236,6 +236,9 @@ summary {
 .academic-banner span {
   color: #ccdbe5;
 }
+.academic-banner .banner-slogan {
+  color: inherit;
+}
 .site-header {
   position: sticky;
   top: 0;
@@ -1100,12 +1103,15 @@ summary {
     width: calc(100% - 40px);
   }
   .academic-banner {
-    font-size: 0.55rem;
-    padding: 7px 0;
+    font-size: 0.75rem;
+    padding: 8px 0;
   }
-  .academic-banner .container > span {
-    max-width: 160px;
-    text-align: right;
+  .academic-banner .container {
+    justify-content: center;
+    text-align: center;
+  }
+  .academic-banner .banner-slogan {
+    display: none;
   }
   .header-inner {
     min-height: 76px;
