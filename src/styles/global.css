@@ -1204,6 +1204,7 @@ summary {
   .comparison-summary {
     margin-top: 46px;
     padding-top: 26px;
+    padding-bottom: 0;
   }
   .comparison-intro,
   .comparison-primary {
@@ -1231,6 +1232,11 @@ summary {
     padding-right: 0;
     padding-left: 0;
   }
+
+  .comparison-related-grid article:last-child {
+    padding-bottom: 8px;
+  }
+
   .comparison-grid article + article {
     border-left: 0;
     border-top: 1px solid var(--line);
