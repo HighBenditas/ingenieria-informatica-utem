@@ -5,6 +5,13 @@ import { heroSlides } from "../data/hero";
 const references = (await getCollection("referencias")).sort(
   (a, b) => a.data.number - b.data.number,
 );
+const formatDate = (iso: string): string =>
+  new Intl.DateTimeFormat("es-CL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(iso));
 ---
 
 <section id="referencias" class="section references-section">
@@ -31,7 +38,7 @@ const references = (await getCollection("referencias")).sort(
               <a href={data.url}>
                 <cite>{data.title}</cite>
               </a>
-              . Recuperado el 5 de noviembre de 2026.
+              . Recuperado el {formatDate(data.consulted)}.
             </span>
           </li>
         ))}

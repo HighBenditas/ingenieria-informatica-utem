@@ -11,7 +11,8 @@ const referencias = defineCollection({
     date: text,
     title: text,
     url: z.url(),
-    consulted: z.literal("2026-11-05"),
+    consulted: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+
   }),
 });
 const malla = defineCollection({

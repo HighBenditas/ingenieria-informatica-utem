@@ -97,5 +97,23 @@
     "title": "Mi Futuro",
     "url": "https://www.mifuturo.cl/",
     "consulted": "2026-11-05"
+  },
+    {
+    "id": "mifuturo",
+    "number": 11,
+    "author": "Ministerio de Educación de Chile",
+    "date": "s. f.",
+    "title": "Mi Futuro",
+    "url": "https://www.mifuturo.cl/",
+    "consulted": "2026-11-05"
+  },
+  {
+    "id": "video",
+    "number": 12,
+    "author": "Admisión UTEM",
+    "date": "2026, 23 de junio",
+    "title": "Ingeniería en Informática en la UTEM [Video]",
+    "url": "https://youtu.be/VGQ9TptyvuI",
+    "consulted": "2026-11-12"
   }
 ]
