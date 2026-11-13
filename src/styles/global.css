@@ -185,11 +185,11 @@ summary {
 .citation {
   display: inline-block;
   font-size: 0.7rem;
-  vertical-align: super;
-  line-height: 1.2;
+  vertical-align: baseline;
+  line-height: 1.4;
   font-weight: 600;
-  padding: 2px;
-  text-decoration: none;
+  padding: 2px 0;
+  text-decoration-thickness: 1px;
   letter-spacing: 0;
   white-space: nowrap;
 }
@@ -208,6 +208,23 @@ summary {
 }
 .citation-source span {
   font-size: 0.78rem;
+}
+.facts-sources {
+  margin-top: -14px;
+  padding-bottom: 24px;
+  color: var(--muted);
+  font-size: 0.67rem;
+  line-height: 1.6;
+}
+.curriculum-source-link {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.curriculum-reference {
+  color: var(--muted);
+  font-size: 0.7rem;
 }
 .skip-link {
   position: fixed;
@@ -383,21 +400,51 @@ summary {
 .example-block p {
   font-size: 0.9rem;
 }
-.example-block .small-note {
-  font-size: 0.72rem;
-  margin-top: 15px;
-}
-.process-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
+.process-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 23px 0 0;
   border-top: 1px solid #c6d9c5;
-  margin-top: 28px;
-  padding-top: 22px;
+}
+.process-flow::before {
+  position: absolute;
+  top: 36px;
+  right: 16.67%;
+  left: 16.67%;
+  height: 1px;
+  background: #9dbd99;
+  content: "";
+}
+.process-flow li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  min-width: 0;
+  color: #274f2d;
+  text-align: center;
+}
+.process-step {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 1px solid #7ea878;
+  border-radius: 50%;
+  background: #edf3ed;
+  color: #3a6434;
   font-family: Consolas, monospace;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.56rem;
+  line-height: 1;
+}
+.process-flow strong {
+  font-size: 0.69rem;
+  letter-spacing: 0.03em;
 }
 .comparison-summary {
   margin-top: 64px;
@@ -426,6 +473,9 @@ summary {
   padding: 26px 28px;
   border-left: 4px solid var(--green);
   background: var(--pale);
+}
+.comparison-note {
+  margin-bottom: 16px;
 }
 .comparison-summary .eyebrow {
   margin-bottom: 0;
@@ -625,6 +675,38 @@ summary {
 .work-list .citation {
   color: #b2d7ff;
 }
+.work-list-source {
+  margin-top: 16px;
+  color: #c9d7e2;
+  font-size: 0.74rem !important;
+}
+.work-offers-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: #a8db7d;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  text-underline-offset: 3px;
+}
+.work-offers-link:hover {
+  color: #d4f5b4;
+  text-decoration-thickness: 2px;
+}
+.work-opportunities {
+  margin-top: 34px;
+}
+.work-opportunities h3 {
+  font-size: 1.14rem;
+  margin-bottom: 8px;
+}
+.work-opportunities > p {
+  color: #c9d7e2;
+  font-size: 0.86rem;
+}
+.work-opportunities .work-opportunities-hint {
+  font-size: 0.77rem;
+  margin-top: 12px;
+}
 .work-note {
   border-top: 1px solid #3b5267;
   max-width: none;
@@ -730,6 +812,9 @@ summary {
   margin-top: 12px;
   min-height: 44px;
   padding: 8px 0;
+}
+.admissions-steps + .small-note {
+  margin-bottom: 16px;
 }
 .weights-block {
   background: white;

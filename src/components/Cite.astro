@@ -1,18 +1,42 @@
 ---
-import { getEntry } from "astro:content";
+import { getPresentedReferences } from "../data/references";
 interface Props {
   source: string;
   variant?: "number" | "source";
+  label?: string;
 }
-const { source, variant = "number" } = Astro.props;
-const entry = await getEntry("referencias", source);
+const { source, variant = "number", label } = Astro.props;
+const entry = (await getPresentedReferences()).find((item) => item.id === source);
 if (!entry) throw new Error("Referencia inexistente: " + source);
+const shortAuthors: Record<string, string> = {
+  "Universidad Tecnológica Metropolitana": "UTEM",
+  "Departamento de Evaluación, Medición y Registro Educacional": "DEMRE",
+  "Ministerio de Educación de Chile": "Mineduc",
+};
+const shortAuthor = shortAuthors[entry.data.author] ?? entry.data.author;
+const sourceContexts: Record<string, string> = {
+  carrera: "Carrera",
+  malla: "Malla",
+  oferta: "Oferta 2027",
+  admision: "Admisión PAES",
+  directo: "Acceso Directo",
+  calendario: "Calendario 2027",
+  acreditacion: "Acreditación",
+  identidad: "Identidad visual",
+  mifuturo: "Mi Futuro",
+  video: "Video de la carrera",
+};
+const context = sourceContexts[source];
+const shortLabel = label
+  ? label.replace(/s\. f\.|\b(?:19|20)\d{2}\b$/, entry.citationDate)
+  : [shortAuthor, context, entry.citationDate].filter(Boolean).join(" · ");
+const visibleLabel = variant === "source" ? entry.data.title : shortLabel;
 ---
 
 <a
   class={variant === "source" ? "citation citation-source" : "citation"}
   href={variant === "source" ? entry.data.url : "#ref-" + source}
-  aria-label={`Fuente ${entry.data.number}: ${entry.data.title}`}
+  aria-label={`${visibleLabel}. Referencia: ${entry.data.title}. ${entry.data.author}, ${entry.bibliographicDate}`}
 >
   {variant === "source" ? (
     <>
@@ -20,6 +44,6 @@ if (!entry) throw new Error("Referencia inexistente: " + source);
       <span aria-hidden="true">↗</span>
     </>
   ) : (
-    <>[{entry.data.number}]</>
+    <>{shortLabel}</>
   )}
 </a>

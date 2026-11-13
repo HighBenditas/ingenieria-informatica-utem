@@ -79,11 +79,12 @@ import Icon from "./Icon.astro";
       </div>
       <button
         type="button"
-        class="carousel-arrow"
-        data-next
-        aria-label="Imagen siguiente"
+        class="carousel-play"
+        data-play
+        aria-label="Pausar carrusel"
       >
-        <span aria-hidden="true">→</span>
+        <span aria-hidden="true" data-play-icon>Ⅱ</span>
+        <span data-play-label>Pausar</span>
       </button>
     </div>
     <a class="hero-credit" href="#creditos-imagenes">

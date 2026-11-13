@@ -1,10 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { getPresentedReferences } from "../data/references";
 import { pendingVerification, site } from "../data/site";
 import { heroSlides } from "../data/hero";
-const references = (await getCollection("referencias")).sort(
-  (a, b) => a.data.number - b.data.number,
-);
+import Cite from "./Cite.astro";
+const references = await getPresentedReferences();
 const formatDate = (iso: string): string =>
   new Intl.DateTimeFormat("es-CL", {
     day: "numeric",
@@ -31,10 +30,10 @@ const formatDate = (iso: string): string =>
         <span aria-hidden="true">+</span>
       </summary>
       <ol class="reference-list">
-        {references.map(({ id, data }) => (
-          <li id={"ref-" + id} value={data.number}>
+        {references.map(({ id, data, bibliographicDate }) => (
+          <li id={"ref-" + id}>
             <span>
-              {data.author} ({data.date}).{" "}
+              {data.author} ({bibliographicDate}).{" "}
               <a href={data.url}>
                 <cite>{data.title}</cite>
               </a>
@@ -62,9 +61,7 @@ const formatDate = (iso: string): string =>
           sitio institucional de UTEM
         </a>
         . La paleta parte del manual institucional.{" "}
-        <a href="#ref-identidad" class="citation">
-          [10]
-        </a>
+        <Cite source="identidad" label="UTEM · 2026" />
       </p>
       <ul>
         {pendingVerification.map((item) => (

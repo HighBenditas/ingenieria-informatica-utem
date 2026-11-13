@@ -18,7 +18,7 @@ const areas = (await getCollection("laboral")).sort(
 
       <p>
         ¿Dónde podrías trabajar? En organizaciones públicas, privadas y del
-        tercer sector. <Cite source="carrera" />
+        tercer sector.
       </p>
       <a href="#admision" class="text-link light-link">
         Da el siguiente paso <span aria-hidden="true">↗</span>
@@ -30,13 +30,26 @@ const areas = (await getCollection("laboral")).sort(
           <span class="mono">0{index + 1}</span>
           <div>
             <h3>{data.title}</h3>
-            <p>
-              {data.description} <Cite source={data.source.id} />
-            </p>
+            <p>{data.description}</p>
+            <a class="work-offers-link" href={data.offersUrl} target="_blank" rel="noopener noreferrer">
+              Ver ofertas en Chile <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </article>
       ))}
+      <p class="work-list-source">
+        Referencia del conjunto: <Cite source="carrera" label="Perfil institucional · UTEM · s. f." />
+      </p>
     </div>
+  </div>
+  <div class="container work-opportunities">
+    <h3>¿Buscas tu primera experiencia laboral?</h3>
+    <p>Explora oportunidades de práctica profesional y primeros empleos en Chile.</p>
+    <a class="work-offers-link" href="https://firstjob.me/ofertas" target="_blank" rel="noopener noreferrer">
+      Ver prácticas y primeros trabajos <span aria-hidden="true">↗</span>
+    </a>
+    <p class="work-opportunities-hint">En FirstJob, selecciona Chile y los filtros de especialidad adecuados.</p>
+    <p class="work-opportunities-hint">Enlaces externos referenciales. Las ofertas, requisitos y ubicaciones dependen de cada empresa y pueden cambiar.</p>
   </div>
   <div class="container">
     {employmentIndicators.length > 0 ? (

@@ -1,5 +1,7 @@
 ---
 import Cite from "./Cite.astro";
+import { getCollection } from "astro:content";
+const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section id="carrera" class="section container">
@@ -41,16 +43,20 @@ import Cite from "./Cite.astro";
         Una aplicación para organizar horas de atención: entender lo que
         necesitan las personas, diseñar la solución y conectar sus datos.
       </p>
-      <p class="small-note">
-        Ejemplo ilustrativo del equipo; no describe un proyecto institucional.
-      </p>
-      <div class="process-line" aria-label="Proceso ilustrativo">
-        <span>Necesidad</span>
-        <span aria-hidden="true">→</span>
-        <span>Diseño</span>
-        <span aria-hidden="true">→</span>
-        <span>Solución</span>
-      </div>
+      <ol class="process-flow" aria-label="Recorrido desde la necesidad hasta la solución">
+        <li>
+          <span class="process-step" aria-hidden="true">01</span>
+          <strong>Necesidad</strong>
+        </li>
+        <li>
+          <span class="process-step" aria-hidden="true">02</span>
+          <strong>Diseño</strong>
+        </li>
+        <li>
+          <span class="process-step" aria-hidden="true">03</span>
+          <strong>Solución</strong>
+        </li>
+      </ol>
     </div>
   </div>
   <div class="comparison-summary" aria-labelledby="comparison-summary-title">
@@ -64,6 +70,11 @@ import Cite from "./Cite.astro";
         relaciona con tus intereses.
       </p>
     </header>
+    <p class="small-note comparison-note">
+      Interpretación del equipo: comparación de enfoques formativos elaborada a
+      partir de información oficial de cada carrera.{" "}
+      <a href="#referencias">Consultar bibliografía</a>.
+    </p>
     <article class="comparison-primary">
       <p class="eyebrow">LA CARRERA QUE ESTÁS EXPLORANDO</p>
       <div>
@@ -96,72 +107,18 @@ import Cite from "./Cite.astro";
       Conoce las diferencias en detalle <span aria-hidden="true">+</span>
     </summary>
     <div class="comparison-grid">
-      <article>
-        <p class="eyebrow">8 SEMESTRES</p>
-        <h3>Ingeniería en Informática</h3>
-        <div class="comparison-detail-list">
-          <p>
-            <strong>Enfoque principal:</strong> diseñar, desarrollar e integrar
-            soluciones de software y sistemas de información para responder a
-            necesidades concretas.
-          </p>
-          <p>
-            <strong>Qué aprenderás:</strong> programación, desarrollo de software,
-            gestión de sistemas y redes, administración de recursos computacionales
-            y criterios de seguridad, calidad y eficiencia.
-          </p>
-          <p>
-            <strong>Diferencia principal:</strong> concentra su formación en crear y
-            gestionar soluciones informáticas aplicadas, dentro de un plan de ocho
-            semestres.
-          </p>
-        </div>
-        <Cite source="carrera" variant="source" />
-      </article>
-      <article>
-        <p class="eyebrow">11 SEMESTRES</p>
-        <h3>Ingeniería Civil en Computación mención Informática</h3>
-        <div class="comparison-detail-list">
-          <p>
-            <strong>Enfoque principal:</strong> formular, planificar, dirigir,
-            evaluar y ejecutar proyectos informáticos apoyándose en ciencias
-            básicas, ingeniería y computación.
-          </p>
-          <p>
-            <strong>Qué aprenderás:</strong> sistemas de información, ciencia de la
-            computación, tecnologías de información, ingeniería de software y
-            liderazgo de equipos multidisciplinarios.
-          </p>
-          <p>
-            <strong>Diferencia principal:</strong> amplía la formación informática
-            con ciencias de la ingeniería y preparación para conducir proyectos y
-            resolver problemas complejos.
-          </p>
-        </div>
-        <Cite source="civil" variant="source" />
-      </article>
-      <article>
-        <p class="eyebrow">11 SEMESTRES</p>
-        <h3>Ingeniería Civil en Ciencia de Datos</h3>
-        <div class="comparison-detail-list">
-          <p>
-            <strong>Enfoque principal:</strong> analizar, procesar y modelar datos
-            para resolver problemas complejos mediante matemática, estadística y
-            computación.
-          </p>
-          <p>
-            <strong>Qué aprenderás:</strong> gestión de grandes volúmenes de datos,
-            arquitecturas de almacenamiento y procesamiento, algoritmos analíticos
-            y aprendizaje automático.
-          </p>
-          <p>
-            <strong>Diferencia principal:</strong> orienta la formación de ingeniería
-            al desarrollo de herramientas que transforman datos en conocimiento
-            para organizaciones y sociedad.
-          </p>
-        </div>
-        <Cite source="datos" variant="source" />
-      </article>
+      {comparison.map(({ data }) => (
+        <article>
+          <p class="eyebrow">{data.duration}</p>
+          <h3>{data.name}</h3>
+          <div class="comparison-detail-list">
+            {data.details.map((item) => (
+              <p><strong>{item.label}</strong>{" "}{item.text}</p>
+            ))}
+          </div>
+          <Cite source={data.source.id} variant="source" />
+        </article>
+      ))}
     </div>
   </details>
 </section>

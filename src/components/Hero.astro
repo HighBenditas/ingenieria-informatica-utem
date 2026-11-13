@@ -11,13 +11,13 @@ import { admissions, site } from "../data/site";
       <div>
         <dt>Duración</dt>
         <dd>
-          <strong>8</strong> semestres <Cite source="carrera" />
+          <strong>8</strong> semestres
         </dd>
       </div>
       <div>
         <dt>Jornada</dt>
         <dd>
-          Diurna <Cite source="carrera" />
+          Diurna
         </dd>
       </div>
       <div>
@@ -25,7 +25,7 @@ import { admissions, site } from "../data/site";
         <dd>
           Ingeniera / Ingeniero
           <br />
-          en Informática <Cite source="carrera" />
+          en Informática
         </dd>
       </div>
       <div>
@@ -33,21 +33,30 @@ import { admissions, site } from "../data/site";
         <dd>
           Licenciada / Licenciado
           <br />
-          en Informática <Cite source="carrera" />
+          en Informática
         </dd>
       </div>
       <div>
         <dt>Sede o campus</dt>
         <dd>
-          {site.campus} <Cite source="malla" />
+          {site.campus}
         </dd>
       </div>
       <div>
         <dt>Código DEMRE</dt>
         <dd>
-          {admissions.code} <Cite source="oferta" />
+          {admissions.code}
         </dd>
       </div>
     </dl>
+    <p class="facts-sources">
+      Fuentes: <Cite source="carrera" label="Datos de la carrera · UTEM · s. f." />
+      <span aria-hidden="true"> · </span>
+      <Cite source="malla" label="Campus · UTEM · s. f." />
+      <span aria-hidden="true"> · </span>
+      <Cite source="oferta" label="Código DEMRE · UTEM · 2026" />
+      <br />
+      DEMRE: Departamento de Evaluación, Medición y Registro Educacional.
+    </p>
   </div>
 </section>

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "informatica",
+    "order": 1,
+    "duration": "8 SEMESTRES",
+    "name": "Ingeniería en Informática",
+    "details": [
+      {
+        "label": "Enfoque principal:",
+        "text": "diseñar, desarrollar e integrar soluciones de software y sistemas de información para responder a necesidades concretas."
+      },
+      {
+        "label": "Qué aprenderás:",
+        "text": "programación, desarrollo de software, gestión de sistemas y redes, administración de recursos computacionales y criterios de seguridad, calidad y eficiencia."
+      },
+      {
+        "label": "Diferencia principal:",
+        "text": "concentra su formación en crear y gestionar soluciones informáticas aplicadas, dentro de un plan de ocho semestres."
+      }
+    ],
+    "source": "carrera"
+  },
+  {
+    "id": "computacion",
+    "order": 2,
+    "duration": "11 SEMESTRES",
+    "name": "Ingeniería Civil en Computación mención Informática",
+    "details": [
+      {
+        "label": "Enfoque principal:",
+        "text": "formular, planificar, dirigir, evaluar y ejecutar proyectos informáticos apoyándose en ciencias básicas, ingeniería y computación."
+      },
+      {
+        "label": "Qué aprenderás:",
+        "text": "sistemas de información, ciencia de la computación, tecnologías de información, ingeniería de software y liderazgo de equipos multidisciplinarios."
+      },
+      {
+        "label": "Diferencia principal:",
+        "text": "amplía la formación informática con ciencias de la ingeniería y preparación para conducir proyectos y resolver problemas complejos."
+      }
+    ],
+    "source": "civil"
+  },
+  {
+    "id": "datos",
+    "order": 3,
+    "duration": "11 SEMESTRES",
+    "name": "Ingeniería Civil en Ciencia de Datos",
+    "details": [
+      {
+        "label": "Enfoque principal:",
+        "text": "analizar, procesar y modelar datos para resolver problemas complejos mediante matemática, estadística y computación."
+      },
+      {
+        "label": "Qué aprenderás:",
+        "text": "gestión de grandes volúmenes de datos, arquitecturas de almacenamiento y procesamiento, algoritmos analíticos y aprendizaje automático."
+      },
+      {
+        "label": "Diferencia principal:",
+        "text": "orienta la formación de ingeniería al desarrollo de herramientas que transforman datos en conocimiento para organizaciones y sociedad."
+      }
+    ],
+    "source": "datos"
+  }
+]

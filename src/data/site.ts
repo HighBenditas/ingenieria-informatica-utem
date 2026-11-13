@@ -78,9 +78,9 @@ export interface VerifiedIndicator {
 export const employmentIndicators: VerifiedIndicator[] = [];
 export const pendingVerification = [
   "Confirmar con la Escuela las diferencias restantes entre la malla web y el folleto PDF.",
-  "Verificar créditos SCT y prerrequisitos en una resolución vigente antes de agregarlos.",
+  "Verificar créditos del Sistema de Créditos Transferibles (SCT) y prerrequisitos en una resolución vigente antes de agregarlos.",
   "Contrastar la acreditación institucional con la resolución actualizada de CNA; su portal no respondió durante esta revisión.",
-  "Obtener indicadores de Mi Futuro/SIES con año y cohorte identificados; el folleto no especifica el año estadístico.",
+  "Obtener indicadores de Mi Futuro y del Servicio de Información de Educación Superior (SIES) con año y cohorte identificados. El folleto no especifica el año estadístico.",
   "Validar las preguntas frecuentes mediante la investigación de audiencia pendiente.",
   "Confirmar recursos de laboratorios y cuerpo académico específicos de la carrera antes de describirlos.",
 ];

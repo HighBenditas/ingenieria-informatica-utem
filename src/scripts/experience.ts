@@ -17,9 +17,6 @@ function setupCarousel(root: HTMLElement): void {
   );
   if (
     !controls ||
-    !play ||
-    !playLabel ||
-    !playIcon ||
     !announcement ||
     slides.length < 2
   )
@@ -28,6 +25,7 @@ function setupCarousel(root: HTMLElement): void {
   let current = 0;
   let pausedByUser = motionPreference.matches;
   let hovering = false;
+  let focused = false;
   let inView = true;
   let timer: number | undefined;
 
@@ -36,6 +34,7 @@ function setupCarousel(root: HTMLElement): void {
     if (
       pausedByUser ||
       hovering ||
+      focused ||
       !inView ||
       document.hidden ||
       motionPreference.matches
@@ -47,11 +46,15 @@ function setupCarousel(root: HTMLElement): void {
     }, 6500);
   }
   const updatePlayback = (): void => {
+    if (!play || !playLabel || !playIcon) {
+      schedule();
+      return;
+    }
     playLabel.textContent = pausedByUser ? "Reproducir" : "Pausar";
     playIcon.textContent = pausedByUser ? "▷" : "Ⅱ";
     play.setAttribute(
       "aria-label",
-      pausedByUser ? "Activar cambio automático" : "Pausar carrusel",
+      pausedByUser ? "Reproducir carrusel automáticamente" : "Pausar carrusel",
     );
     play.hidden = motionPreference.matches;
     schedule();
@@ -69,17 +72,17 @@ function setupCarousel(root: HTMLElement): void {
     if (counter)
       counter.textContent = (current + 1).toString().padStart(2, "0") + " /";
     if (manual) {
-      pausedByUser = true;
       announcement.textContent =
         slides[current]?.getAttribute("aria-label") ?? "";
+      if (play) pausedByUser = true;
       updatePlayback();
     }
   };
-  
+
   buttons.forEach((button, index) =>
     button.addEventListener("click", () => show(index, true)),
   );
-  play.addEventListener("click", () => {
+  play?.addEventListener("click", () => {
     pausedByUser = !pausedByUser;
     updatePlayback();
   });
@@ -93,12 +96,19 @@ function setupCarousel(root: HTMLElement): void {
     hovering = false;
     schedule();
   });
-  // Keyboard interaction stops autoplay until the visitor explicitly restarts it.
+  // Pause while keyboard focus remains inside the carousel.
   root.addEventListener("focusin", (event) => {
-    if (event.target !== play) {
+    focused = true;
+    if (play && event.target !== play) {
       pausedByUser = true;
-      updatePlayback();
     }
+    updatePlayback();
+  });
+  root.addEventListener("focusout", (event) => {
+    if (event.relatedTarget instanceof Node && root.contains(event.relatedTarget))
+      return;
+    focused = false;
+    schedule();
   });
   document.addEventListener("visibilitychange", schedule);
   motionPreference.addEventListener("change", () => {
@@ -234,9 +244,22 @@ function setupCurriculum(): void {
   });
 }
 
+function setupReferenceLinks(): void {
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element
+      ? event.target.closest<HTMLAnchorElement>('a.citation[href^="#ref-"]')
+      : null;
+    if (!link) return;
+    const target = document.getElementById(link.hash.slice(1));
+    const details = target?.closest<HTMLDetailsElement>("details");
+    if (details) details.open = true;
+  });
+}
+
 document
   .querySelectorAll<HTMLElement>("[data-carousel]")
   .forEach(setupCarousel);
 setupReveals();
 setupMobileMenu();
 setupCurriculum();
+setupReferenceLinks();

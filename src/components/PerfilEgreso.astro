@@ -25,19 +25,13 @@ import Icon from "./Icon.astro";
             <span class="mono">0{index + 1}</span>
           </div>
           <h3>{item.title}</h3>
-          <p>
-            {item.description} <Cite source={item.source} />
-          </p>
+          <p>{item.description}</p>
         </article>
       ))}
     </div>
     <p class="small-note">
-      Síntesis del equipo a partir del perfil institucional. Consulta su
-      formulación completa en la{" "}
-      <a href="https://www.utem.cl/carreras/ingenieria-en-informatica/">
-        ficha oficial de la carrera
-      </a>
-      .
+      Síntesis del equipo a partir del perfil institucional. Referencia del
+      conjunto: <Cite source="carrera" label="Perfil institucional · UTEM · s. f." />
     </p>
   </div>
 </section>

@@ -30,6 +30,7 @@ const laboral = defineCollection({
     order: z.number().int(),
     title: text,
     description: text,
+    offersUrl: z.url(),
     source: reference("referencias"),
   }),
 });
@@ -48,4 +49,14 @@ const faq = defineCollection({
     source: reference("referencias"),
   }),
 });
-export const collections = { referencias, malla, laboral, faq };
+const comparacion = defineCollection({
+  loader: file("src/content/comparacion.json"),
+  schema: z.object({
+    order: z.number().int().positive(),
+    duration: text,
+    name: text,
+    details: z.array(z.object({ label: text, text })).length(3),
+    source: reference("referencias"),
+  }),
+});
+export const collections = { referencias, malla, laboral, faq, comparacion };

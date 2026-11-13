@@ -1,7 +1,7 @@
 import type { ImageMetadata } from "astro";
-import coding from "../assets/coding-team.jpg";
-import students from "../assets/students.jpg";
-import collaboration from "../assets/collaboration.jpg";
+import cybersecurity from "../assets/hero-ciberseguridad.webp";
+import development from "../assets/hero-desarrollo.webp";
+import servers from "../assets/hero-servidores.webp";
 
 interface HeroSlide {
   image: ImageMetadata;
@@ -13,29 +13,29 @@ interface HeroSlide {
 }
 export const heroSlides: HeroSlide[] = [
   {
-    image: coding,
-    label: "Crear soluciones",
-    alt: "Un equipo conversa frente a un computador con código en pantalla.",
+    image: cybersecurity,
+    label: "Ciberseguridad · imagen conceptual",
+    alt: "Pantalla con una interfaz tecnológica azul y paneles de información, como representación conceptual de ciberseguridad.",
+    position: "60% 50%",
+    author: "Tima Miroshnichenko",
+    source: "https://www.pexels.com/photo/close-up-view-of-system-hacking-5380642/",
+  },
+  {
+    image: development,
+    label: "Desarrollo de software",
+    alt: "Un desarrollador trabaja con código y documentación en dos monitores.",
+    position: "60% 55%",
+    author: "Zayed Hossain",
+    source:
+      "https://www.pexels.com/photo/developer-working-on-code-in-a-modern-office-36706460/",
+  },
+  {
+    image: servers,
+    label: "Servidores y almacenamiento de datos",
+    alt: "Pasillo de un centro de datos con filas de gabinetes de servidores y una estación de mantenimiento.",
     position: "65% 50%",
-    author: "cottonbro studio",
-    source: "https://www.pexels.com/photo/people-working-together-6804071/",
-  },
-  {
-    image: students,
-    label: "Aprender en equipo",
-    alt: "Cuatro personas comparten ideas mientras trabajan con un computador portátil.",
-    position: "65% 45%",
-    author: "Alexander Suhorucov",
+    author: "Brett Sayles",
     source:
-      "https://www.pexels.com/photo/multiethnic-students-using-laptop-while-studying-6457572/",
-  },
-  {
-    image: collaboration,
-    label: "Conectar ideas",
-    alt: "Vista superior de varias manos reunidas alrededor de un computador portátil.",
-    position: "70% 50%",
-    author: "Mikhail Nilov",
-    source:
-      "https://www.pexels.com/photo/group-of-people-with-their-hands-on-laptop-6894202/",
+      "https://www.pexels.com/photo/server-racks-on-data-center-4508751/",
   },
 ];
