@@ -778,6 +778,11 @@
   .hero-stage {
     min-height: 620px;
   }
+  .hero-stage::before {
+    background:
+      linear-gradient(90deg, #07192bf2 0%, #07192bea 65%, #07192b99 100%),
+      linear-gradient(0deg, #07192bbf, transparent 32%);
+  }
   .hero h1 {
     font-size: clamp(3.3rem, 7.7vw, 5rem);
   }
