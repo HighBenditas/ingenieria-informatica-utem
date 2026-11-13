@@ -7,13 +7,23 @@ const videoId: string = "VGQ9TptyvuI";
   <h2>Escucha a quienes estudian la carrera</h2>
   <div class="video-frame">
     <iframe
-      src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+      data-video-src={`https://www.youtube-nocookie.com/embed/${videoId}`}
       title="Ingeniería en Informática en la UTEM, video de Admisión UTEM"
       loading="lazy"
       allow="encrypted-media; picture-in-picture"
       allowfullscreen
       referrerpolicy="strict-origin-when-cross-origin"
     ></iframe>
+    <noscript>
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+        title="Ingeniería en Informática en la UTEM, video de Admisión UTEM"
+        loading="lazy"
+        allow="encrypted-media; picture-in-picture"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </noscript>
   </div>
   <p class="small-note">
     Video publicado por Admisión UTEM (YouTube). Contenido institucional, no

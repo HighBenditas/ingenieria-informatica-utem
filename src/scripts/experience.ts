@@ -28,6 +28,18 @@ function setupCarousel(root: HTMLElement): void {
   let focused = false;
   let inView = true;
   let timer: number | undefined;
+  let requestedSlide = 0;
+
+  function loadSlide(index: number): HTMLImageElement | null {
+    const image = slides[index]?.querySelector<HTMLImageElement>("img");
+    if (image?.dataset.slideSrc) {
+      image.srcset = image.dataset.slideSrcset ?? "";
+      image.src = image.dataset.slideSrc;
+      delete image.dataset.slideSrc;
+      delete image.dataset.slideSrcset;
+    }
+    return image ?? null;
+  }
 
   function schedule(): void {
     window.clearTimeout(timer);
@@ -41,8 +53,7 @@ function setupCarousel(root: HTMLElement): void {
     )
       return;
     timer = window.setTimeout(() => {
-      show(current + 1, false);
-      schedule();
+      void show(current + 1, false).then(schedule);
     }, 6500);
   }
   const updatePlayback = (): void => {
@@ -59,8 +70,18 @@ function setupCarousel(root: HTMLElement): void {
     play.hidden = motionPreference.matches;
     schedule();
   };
-  const show = (index: number, manual: boolean): void => {
-    current = (index + slides.length) % slides.length;
+  const show = async (index: number, manual: boolean): Promise<void> => {
+    const request = ++requestedSlide;
+    const next = (index + slides.length) % slides.length;
+    if (manual) {
+      pausedByUser = true;
+      updatePlayback();
+    }
+    // Keep the current photo visible until the requested one is ready.
+    await loadSlide(next)?.decode().catch(() => undefined);
+    if (request !== requestedSlide) return;
+    current = next;
+    if (!motionPreference.matches) loadSlide((current + 1) % slides.length);
     slides.forEach((slide, i) => {
       slide.dataset.active = String(i === current);
       slide.setAttribute("aria-hidden", String(i !== current));
@@ -123,6 +144,39 @@ function setupCarousel(root: HTMLElement): void {
   }
   controls.hidden = false;
   updatePlayback();
+  // Do not compete with the first photo before it has decoded and painted.
+  void loadSlide(0)?.decode().catch(() => undefined).then(() => {
+    window.setTimeout(() => {
+      if (!motionPreference.matches && !document.hidden && inView)
+        loadSlide((current + 1) % slides.length);
+    }, 1000);
+  });
+}
+
+function setupDeferredVideos(): void {
+  const frames = document.querySelectorAll<HTMLIFrameElement>("iframe[data-video-src]");
+  const load = (frame: HTMLIFrameElement): void => {
+    if (frame.dataset.videoSrc) {
+      frame.src = frame.dataset.videoSrc;
+      delete frame.dataset.videoSrc;
+    }
+  };
+  if (!("IntersectionObserver" in window)) {
+    frames.forEach(load);
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const frame = entry.target.querySelector<HTMLIFrameElement>("iframe[data-video-src]");
+        if (frame) load(frame);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: "200px" });
+  frames.forEach((frame) => {
+    if (frame.parentElement) observer.observe(frame.parentElement);
+  });
 }
 
 function setupReveals(): void {
@@ -263,3 +317,4 @@ setupReveals();
 setupMobileMenu();
 setupCurriculum();
 setupReferenceLinks();
+setupDeferredVideos();

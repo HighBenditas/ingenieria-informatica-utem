@@ -1,7 +1,11 @@
 ---
-import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import { heroSlides } from "../data/hero";
 import Icon from "./Icon.astro";
+const images = await Promise.all(heroSlides.map((slide) => getImage({
+  src: slide.image, widths: [640, 1024, 1600], width: 1600, height: 900,
+  format: "webp", quality: 78,
+})));
 ---
 
 <div
@@ -23,16 +27,18 @@ import Icon from "./Icon.astro";
         aria-label={`${index + 1} de ${heroSlides.length}: ${slide.label}`}
         aria-hidden={index !== 0}
       >
-        <Image
-          src={slide.image}
+        <img
+          {...images[index]?.attributes}
+          src={index === 0 ? images[index]?.src : undefined}
+          srcset={index === 0 ? images[index]?.srcSet.attribute : undefined}
+          data-slide-src={index === 0 ? undefined : images[index]?.src}
+          data-slide-srcset={index === 0 ? undefined : images[index]?.srcSet.attribute}
           alt={slide.alt}
-          widths={[640, 1024, 1600]}
           sizes="100vw"
           width={1600}
           height={900}
-          format="webp"
-          quality={78}
-          loading={index === 0 ? "eager" : "lazy"}
+          loading="eager"
+          decoding="async"
           fetchpriority={index === 0 ? "high" : "low"}
           style={`object-position: ${slide.position}`}
         />
