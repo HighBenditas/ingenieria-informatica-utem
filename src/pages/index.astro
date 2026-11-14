@@ -1,4 +1,6 @@
 ---
+// Página principal (landing). Solo ensambla el layout y los componentes; el contenido de
+// cada sección está dentro de su componente o en los archivos JSON de src/content.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
@@ -15,9 +17,12 @@ import Referencias from "../components/Referencias.astro";
 import Footer from "../components/Footer.astro";
 ---
 
+{/* BaseLayout aporta el <head> y la estructura común; lo de adentro va en su <slot />. */}
 <BaseLayout>
   <Header />
+  {/* id="contenido": destino del enlace "Saltar al contenido principal" (accesibilidad). */}
   <main id="contenido">
+    {/* Orden de las secciones, de arriba hacia abajo. */}
     <Hero />
     <AccesosRapidos />
     <SobreCarrera />

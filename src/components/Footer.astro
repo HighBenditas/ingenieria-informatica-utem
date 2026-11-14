@@ -1,15 +1,20 @@
 ---
+// Datos generales del sitio (aquí se usa la URL de admisión).
 import { site } from "../data/site";
+// Componente con los íconos de redes sociales.
 import SocialLinks from "./SocialLinks.astro";
 ---
 
+{/* Pie de página: marca, enlaces útiles, aviso de proyecto no oficial y redes sociales. */}
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
+      {/* Marca: vuelve al inicio de la página. */}
       <a class="footer-brand" href="#inicio">
         Informática <strong>UTEM</strong>
         <span>Ideas que se convierten en posibilidades.</span>
       </a>
+      {/* Enlaces del pie: dos externos (↗) y dos internos. */}
       <nav aria-label="Enlaces del pie de página">
         <a href="https://www.utem.cl/">Sitio institucional ↗</a>
         <a href={site.admissionsUrl}>Admisión UTEM ↗</a>
@@ -18,6 +23,7 @@ import SocialLinks from "./SocialLinks.astro";
       </nav>
     </div>
     <div class="footer-bottom">
+      {/* Aviso legal: aclara que es un trabajo del electivo EFE685 y no una página oficial. */}
       <p>
         Proyecto académico estudiantil · EFE685, Electivo de Computación Móvil.
         <br />
@@ -26,6 +32,7 @@ import SocialLinks from "./SocialLinks.astro";
       </p>
       <span>DISEÑADO PARA EXPLORAR.</span>
     </div>
+    {/* Íconos de redes sociales oficiales de la UTEM. */}
     <SocialLinks />
   </div>
 </footer>

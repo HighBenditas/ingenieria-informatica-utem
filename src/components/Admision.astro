@@ -1,9 +1,11 @@
 ---
+// Datos de admisión (proceso, código DEMRE, promedio mínimo, ponderaciones) y generales (URL de admisión).
 import { admissions, site } from "../data/site";
 import Cite from "./Cite.astro";
 import Icon from "./Icon.astro";
 ---
 
+{/* Sección "Admisión": cómo postular, requisitos, calendario y ponderaciones. */}
 <section id="admision" class="section admissions-section">
   <div class="container">
     <p class="eyebrow">ADMISIÓN {admissions.process}</p>
@@ -13,12 +15,15 @@ import Icon from "./Icon.astro";
         <br />
         empieza aquí.
       </h2>
+      {/* El código DEMRE sale de src/data/site.ts; la cita lo respalda con la referencia "oferta". */}
       <p>
         Tu camino hacia Ingeniería en Informática. Código DEMRE{" "}
         <strong>{admissions.code}</strong>. <Cite source="oferta" />
       </p>
     </div>
+    {/* Lista numerada con los tres pasos. */}
     <ol class="admissions-steps">
+      {/* Paso 1: vías de ingreso (PAES y Acceso Directo), con dos citas y un enlace externo. */}
       <li>
         <span class="step-number">01</span>
         <h3>Explora tu vía de ingreso</h3>
@@ -30,6 +35,7 @@ import Icon from "./Icon.astro";
         </p>
         <a href="https://accesodirecto.utem.cl/">Conocer Acceso Directo ↗</a>
       </li>
+      {/* Paso 2: requisito. El promedio mínimo viene de src/data/site.ts. */}
       <li>
         <span class="step-number">02</span>
         <h3>Revisa los requisitos</h3>
@@ -41,6 +47,7 @@ import Icon from "./Icon.astro";
           Acceso. <Cite source="oferta" />
         </p>
       </li>
+      {/* Paso 3: fechas clave del proceso, con cita del calendario DEMRE. */}
       <li>
         <span class="step-number">03</span>
         <h3>Ten presente el calendario</h3>
@@ -55,6 +62,7 @@ import Icon from "./Icon.astro";
         </a>
       </li>
     </ol>
+    {/* Explica las siglas la primera vez que se usan en las ponderaciones. */}
     <p class="small-note">
       NEM significa Notas de Enseñanza Media. M2 corresponde a la prueba de
       Competencia Matemática 2.
@@ -66,6 +74,7 @@ import Icon from "./Icon.astro";
           Proceso 2027 · Ficha referencial UTEM <Cite source="oferta" />
         </p>
       </div>
+      {/* Ponderaciones: una pareja nombre-valor por cada elemento de src/data/site.ts. */}
       <dl class="weights">
         {admissions.weights.map((weight) => (
           <div>
@@ -78,6 +87,7 @@ import Icon from "./Icon.astro";
         ))}
       </dl>
     </div>
+    {/* Advertencia: los datos pueden cambiar; remite a la oferta oficial. */}
     <p class="small-note">
       Ciencias e Historia son alternativas de una misma ponderación, no se
       suman. La ficha institucional advierte que los datos pueden cambiar:
@@ -85,11 +95,14 @@ import Icon from "./Icon.astro";
       postular.
     </p>
     <div class="admissions-bottom">
+      {/* Botón a la página oficial de admisión de la UTEM (URL de src/data/site.ts). */}
       <a class="button" href={site.admissionsUrl}>
         Revisar admisión oficial UTEM <Icon name="arrow" size={20} />
       </a>
       <span>Tu decisión, con información oficial.</span>
     </div>
+    {/* Recursos oficiales de la UTEM (becas, aranceles y orientación). aria-labelledby usa
+        el título de abajo como nombre de la región. */}
     <aside class="admissions-resources" aria-labelledby="admissions-resources-title">
       <div>
         <p class="eyebrow">INFORMACIÓN OFICIAL UTEM</p>

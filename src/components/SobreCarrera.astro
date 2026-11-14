@@ -1,9 +1,12 @@
 ---
 import Cite from "./Cite.astro";
+// Lee la colección "comparacion" (src/content/comparacion.json, validada por un esquema).
 import { getCollection } from "astro:content";
+// Ordena las carreras comparadas según el campo "order".
 const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.order - b.data.order);
 ---
 
+{/* Sección "La carrera": qué es, un ejemplo y en qué se diferencia de carreras afines. */}
 <section id="carrera" class="section container">
   <div class="section-heading">
     <p class="eyebrow">LA CARRERA</p>
@@ -20,6 +23,7 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
     </div>
   </div>
   <div class="about-grid">
+    {/* Definición de la carrera, con cita de la fuente oficial. */}
     <div class="about-statement">
       <span class="mono">PENSAR. CREAR. CONECTAR.</span>
       <h3>
@@ -32,6 +36,7 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
         seguridad, calidad y eficiencia. <Cite source="carrera" />
       </p>
     </div>
+    {/* Ejemplo ilustrativo del equipo (no es un proyecto institucional; así se aclara en el texto). */}
     <div class="example-block">
       <p class="eyebrow">IMAGINA, POR EJEMPLO</p>
       <h3>
@@ -43,6 +48,8 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
         Una aplicación para organizar horas de atención: entender lo que
         necesitan las personas, diseñar la solución y conectar sus datos.
       </p>
+      {/* Recorrido en tres pasos. Los números son decorativos (aria-hidden); el nombre del paso
+          está en <strong>. aria-label describe la lista completa. */}
       <ol class="process-flow" aria-label="Recorrido desde la necesidad hasta la solución">
         <li>
           <span class="process-step" aria-hidden="true">01</span>
@@ -59,6 +66,7 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
       </ol>
     </div>
   </div>
+  {/* Resumen de comparación con carreras afines. aria-labelledby usa el título de abajo como nombre. */}
   <div class="comparison-summary" aria-labelledby="comparison-summary-title">
     <header class="comparison-intro">
       <h3 id="comparison-summary-title">
@@ -70,11 +78,13 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
         relaciona con tus intereses.
       </p>
     </header>
+    {/* Aviso: la comparación es interpretación del equipo, basada en fuentes oficiales de cada carrera. */}
     <p class="small-note comparison-note">
       Interpretación del equipo: comparación de enfoques formativos elaborada a
       partir de información oficial de cada carrera.{" "}
       <a href="#referencias">Consultar bibliografía</a>.
     </p>
+    {/* Tarjeta de la carrera que se está explorando. variant="source" enlaza directamente a la fuente. */}
     <article class="comparison-primary">
       <p class="eyebrow">LA CARRERA QUE ESTÁS EXPLORANDO</p>
       <div>
@@ -84,6 +94,7 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
         <Cite source="carrera" variant="source" />
       </div>
     </article>
+    {/* Dos carreras afines, cada una con su duración y su fuente oficial. */}
     <div class="comparison-related">
       <p class="eyebrow">OTRAS CARRERAS RELACIONADAS</p>
       <div class="comparison-related-grid">
@@ -102,6 +113,8 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
       </div>
     </div>
   </div>
+  {/* Comparación detallada desplegable. Sus textos NO están aquí: vienen de la colección
+      "comparacion" (JSON), para mantener el contenido separado del código. */}
   <details class="comparison">
     <summary>
       Conoce las diferencias en detalle <span aria-hidden="true">+</span>
@@ -112,6 +125,7 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
           <p class="eyebrow">{data.duration}</p>
           <h3>{data.name}</h3>
           <div class="comparison-detail-list">
+            {/* Cada apartado: etiqueta en negrita y su texto. */}
             {data.details.map((item) => (
               <p><strong>{item.label}</strong>{" "}{item.text}</p>
             ))}

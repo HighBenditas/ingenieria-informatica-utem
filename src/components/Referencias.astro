@@ -1,9 +1,14 @@
 ---
+// Lee las referencias ya ordenadas en formato APA (ver src/data/references.ts).
 import { getPresentedReferences } from "../data/references";
+// Fecha de revisión del contenido y lista de datos por confirmar.
 import { pendingVerification, site } from "../data/site";
+// Imágenes del carrusel (se usan para los créditos de las fotografías).
 import { heroSlides } from "../data/hero";
 import Cite from "./Cite.astro";
 const references = await getPresentedReferences();
+// Convierte una fecha como "2026-11-12" en "12 de noviembre de 2026".
+// timeZone: "UTC" evita que la fecha se corra un día según la zona horaria.
 const formatDate = (iso: string): string =>
   new Intl.DateTimeFormat("es-CL", {
     day: "numeric",
@@ -13,23 +18,28 @@ const formatDate = (iso: string): string =>
   }).format(new Date(iso));
 ---
 
+{/* Sección "Fuentes y referencias": de dónde sale cada dato (trazabilidad). */}
 <section id="referencias" class="section references-section">
   <div class="container">
     <p class="eyebrow">INFORMACIÓN TRAZABLE</p>
     <div class="split-heading">
       <h2>Fuentes y referencias</h2>
+      {/* <time> con datetime marca la fecha de revisión de forma legible para máquinas. */}
       <p>
         Revisión de contenido:{" "}
         <time datetime="2026-11-05">{site.reviewDate}</time>. Las citas del
         sitio te llevan a estas fuentes.
       </p>
     </div>
+    {/* Desplegable con la lista de referencias en formato APA. */}
     <details class="references-details">
       <summary>
         Consultar las {references.length} referencias{" "}
         <span aria-hidden="true">+</span>
       </summary>
       <ol class="reference-list">
+        {/* Cada referencia tiene un id "ref-..." para que las citas del sitio puedan saltar a ella.
+            Se muestra: autor (fecha). Título enlazado. Recuperado el [fecha de consulta]. */}
         {references.map(({ id, data, bibliographicDate }) => (
           <li id={"ref-" + id}>
             <span>
@@ -43,6 +53,7 @@ const formatDate = (iso: string): string =>
         ))}
       </ol>
     </details>
+    {/* Transparencia: qué es del equipo, qué es de terceros, con sus licencias, y qué falta confirmar. */}
     <details class="references-details">
       <summary>
         Transparencia editorial y datos por confirmar{" "}
@@ -64,11 +75,13 @@ const formatDate = (iso: string): string =>
         <Cite source="identidad" label="UTEM · 2026" />
       </p>
       <ul>
+        {/* Lista de datos pendientes de confirmar (src/data/site.ts). */}
         {pendingVerification.map((item) => (
           <li>{item}</li>
         ))}
       </ul>
     </details>
+    {/* Créditos de las fotografías. "open" lo deja abierto al cargar, porque el hero enlaza aquí. */}
     <details id="creditos-imagenes" class="references-details" open>
       <summary>
         Créditos de las fotografías <span aria-hidden="true">+</span>
@@ -79,6 +92,7 @@ const formatDate = (iso: string): string =>
         representan a UTEM ni implican respaldo de las personas retratadas.
       </p>
       <ul>
+        {/* Una línea por imagen del carrusel: enlace al original y autor (src/data/hero.ts). */}
         {heroSlides.map((slide) => (
           <li>
             <a href={slide.source}>{slide.label}</a> · Fotografía de{" "}

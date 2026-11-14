@@ -1,6 +1,8 @@
 ---
+// Datos de admisión (aquí se usa el nombre del proceso, por ejemplo "2027").
 import { admissions } from "../data/site";
 
+// Los cuatro accesos rápidos: destino dentro de la página (href) y texto visible (label).
 const links = [
   { href: "#malla", label: "Malla curricular" },
   { href: "#perfil", label: "Perfil de egreso" },
@@ -9,9 +11,11 @@ const links = [
 ];
 ---
 
+{/* Menú de accesos rápidos bajo el hero. aria-labelledby lo nombra con el título de abajo. */}
 <nav class="quick-links container" aria-labelledby="quick-links-title">
   <h2 id="quick-links-title">¿Qué te gustaría conocer?</h2>
   <ul>
+    {/* Un enlace por cada elemento de la lista; la flecha ↓ es decorativa (aria-hidden). */}
     {links.map(({ href, label }) => (
       <li>
         <a href={href}>
@@ -23,7 +27,9 @@ const links = [
   </ul>
 </nav>
 
+{/* Estilos propios de este componente (Astro los aplica solo a él). */}
 <style>
+  /* Contenedor: espacio vertical y línea superior que lo separa del hero. */
   .quick-links {
     padding-block: 20px;
     border-top: 1px solid var(--line);
@@ -34,6 +40,7 @@ const links = [
     line-height: 1.4;
     margin-bottom: 14px;
   }
+  /* Lista en 4 columnas iguales, sin viñetas. minmax(0, 1fr) evita que una columna desborde. */
   .quick-links ul {
     list-style: none;
     display: grid;
@@ -45,6 +52,7 @@ const links = [
   .quick-links li {
     min-width: 0;
   }
+  /* Cada enlace: texto a la izquierda y flecha a la derecha; alto mínimo de 48 px para que sea fácil de tocar. */
   .quick-links a {
     display: flex;
     align-items: center;
@@ -65,17 +73,20 @@ const links = [
   .quick-links a span {
     color: var(--blue);
   }
+  /* Al pasar el cursor o enfocar con teclado, cambia el color, el fondo y la línea inferior. */
   .quick-links a:hover,
   .quick-links a:focus-visible {
     color: var(--blue);
     background: var(--pale);
     border-bottom-color: var(--blue);
   }
+  /* Hasta 900 px de ancho: 2 columnas. */
   @media (max-width: 900px) {
     .quick-links ul {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
+  /* Hasta 640 px (móvil): menos espacio entre elementos y letra algo más chica. */
   @media (max-width: 640px) {
     .quick-links ul {
       gap: 8px 16px;

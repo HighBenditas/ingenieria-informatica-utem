@@ -1,13 +1,19 @@
 ---
+// getImage genera versiones optimizadas de cada imagen (formato y tamaños).
 import { getImage } from "astro:assets";
+// Lista de imágenes del carrusel (ruta, texto alternativo, autor, etc.), en src/data/hero.ts.
 import { heroSlides } from "../data/hero";
 import Icon from "./Icon.astro";
+// Para cada imagen se genera: formato webp (más liviano), calidad 78, tres anchos (640, 1024 y 1600 px)
+// para que cada pantalla descargue el tamaño que necesita. Promise.all las procesa en paralelo.
 const images = await Promise.all(heroSlides.map((slide) => getImage({
   src: slide.image, widths: [640, 1024, 1600], width: 1600, height: 900,
   format: "webp", quality: 78,
 })));
 ---
 
+{/* Carrusel del hero. role="region" y aria-roledescription lo identifican como carrusel
+    para lectores de pantalla. data-carousel es la marca que usa el script (experience.ts). */}
 <div
   class="hero-stage"
   data-carousel
@@ -16,6 +22,8 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
   aria-label="Informática en imágenes"
 >
   <div class="hero-slides">
+    {/* Una diapositiva por imagen. data-active indica cuál se ve; las demás quedan ocultas
+        para lectores de pantalla (aria-hidden) hasta que les toque. */}
     {heroSlides.map((slide, index) => (
       <div
         class="hero-slide"
@@ -27,6 +35,9 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
         aria-label={`${index + 1} de ${heroSlides.length}: ${slide.label}`}
         aria-hidden={index !== 0}
       >
+        {/* Solo la primera imagen carga de inmediato (src y srcset). Las demás guardan su dirección
+            en data-slide-src y data-slide-srcset, y el script las carga después, para acelerar la
+            carga inicial. fetchpriority="high" le da prioridad a la primera. alt describe la imagen. */}
         <img
           {...images[index]?.attributes}
           src={index === 0 ? images[index]?.src : undefined}
@@ -45,6 +56,7 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
       </div>
     ))}
   </div>
+  {/* Texto principal sobre las imágenes: es el único <h1> de la página. */}
   <div class="container hero-content">
     <div class="hero-copy">
       <p class="eyebrow">
@@ -60,6 +72,7 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
         conectar el mundo digital.
       </p>
       <div class="button-row">
+        {/* Botón principal: lleva a la sección "La carrera". */}
         <a class="button hero-primary" href="#carrera">
           Explorar la carrera <Icon name="arrow" size={19} />
         </a>
@@ -70,7 +83,10 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
     </div>
   </div>
   <div class="container hero-bottom">
+    {/* Controles del carrusel. Empiezan ocultos (atributo hidden): el script los muestra solo si
+        JavaScript funciona, porque sin él no servirían. */}
     <div class="carousel-controls" data-carousel-controls hidden>
+      {/* Un botón (punto) por imagen para elegirla. aria-pressed marca la que está activa. */}
       <div class="carousel-dots" role="group" aria-label="Elegir imagen">
         {heroSlides.map((slide, index) => (
           <button
@@ -83,6 +99,8 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
           </button>
         ))}
       </div>
+      {/* Botón pausar/reproducir: permite detener el cambio automático (accesibilidad).
+          El script cambia su texto y su aria-label según el estado. */}
       <button
         type="button"
         class="carousel-play"
@@ -93,10 +111,13 @@ const images = await Promise.all(heroSlides.map((slide) => getImage({
         <span data-play-label>Pausar</span>
       </button>
     </div>
+    {/* Enlace a los créditos de las fotografías (en la sección de referencias). */}
     <a class="hero-credit" href="#creditos-imagenes">
       Fotografías referenciales · Créditos ↗
     </a>
   </div>
+  {/* Mensaje invisible: el script escribe aquí qué imagen se muestra, para que lo lea el lector
+      de pantalla (aria-live="polite" lo anuncia sin interrumpir). */}
   <p
     class="sr-only"
     data-carousel-announcement

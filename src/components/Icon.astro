@@ -1,9 +1,15 @@
 ---
+// Props = datos que recibe el componente. TypeScript los tipa para detectar errores antes de publicar.
 interface Props {
+  // Nombre del ícono: solo se aceptan estos siete valores.
   name: "code" | "layers" | "network" | "shield" | "spark" | "people" | "arrow";
+  // Tamaño en píxeles (opcional).
   size?: number;
 }
+// Lee los datos recibidos; si no se indica tamaño, usa 24 px.
 const { name, size = 24 } = Astro.props;
+// Diccionario: cada nombre de ícono se asocia con el trazo SVG (atributo "d") que lo dibuja.
+// Record<Props["name"], string> obliga a tener un trazo por cada nombre posible.
 const paths: Record<Props["name"], string> = {
   code: "m8 5-7 7 7 7m8-14 7 7-7 7m-3-17-2 20",
   layers: "m12 2 10 6-10 6L2 8l10-6ZM2 12l10 6 10-6M2 16l10 6 10-6",
@@ -16,6 +22,10 @@ const paths: Record<Props["name"], string> = {
 };
 ---
 
+{/* Dibuja el ícono como SVG en línea.
+    viewBox="0 0 24 24" define el sistema de coordenadas del dibujo.
+    stroke="currentColor": el trazo toma el color del texto que lo rodea.
+    aria-hidden="true": es decorativo, los lectores de pantalla lo ignoran. */}
 <svg
   width={size}
   height={size}
@@ -27,5 +37,6 @@ const paths: Record<Props["name"], string> = {
   stroke-linejoin="round"
   aria-hidden="true"
 >
+  {/* El trazo se elige del diccionario según el nombre recibido. */}
   <path d={paths[name]} />
 </svg>

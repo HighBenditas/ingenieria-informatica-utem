@@ -1,32 +1,46 @@
 ---
+// Layout base: estructura común de la página (<head>, metadatos, SEO y script).
+// Estilos globales y de interacción: Astro los incluye en la página final.
 import "../styles/global.css";
 import "../styles/experience.css";
+// Datos generales del sitio: título y descripción por defecto.
 import { site } from "../data/site";
+// Props = datos que recibe el layout. Ambos son opcionales.
 interface Props {
   title?: string;
   description?: string;
 }
+// Si no se entrega título o descripción, se usan los de src/data/site.ts.
 const { title = site.title, description = site.description } = Astro.props;
+// URL canónica de la página: solo existe si el sitio tiene URL pública (SITE_URL, ver astro.config.mjs).
 const canonical = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : undefined;
 ---
 
 <!doctype html>
+{/* lang="es-CL": idioma de la página, para lectores de pantalla y buscadores. */}
 <html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
+    {/* Hace que la página se ajuste al ancho de cada pantalla (necesario para el diseño responsivo). */}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Título y descripción únicos de la página (SEO). */}
     <title>{title}</title>
     <meta name="description" content={description} />
+    {/* Color de la barra del navegador en celulares. */}
     <meta name="theme-color" content="#004eaa" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {/* URL canónica: indica a los buscadores cuál es la dirección oficial. Solo si hay URL pública. */}
     {canonical && <link rel="canonical" href={canonical} />}
+    {/* Open Graph: define cómo se ve el enlace al compartirlo en redes sociales. */}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CL" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
+    {/* La imagen al compartir necesita URL absoluta, por eso solo se agrega si hay URL pública.
+        1200 x 630 es el tamaño estándar para esta imagen. */}
     {Astro.site && (
       <meta
         property="og:image"
@@ -41,13 +55,17 @@ const canonical = Astro.site
         content="Ingeniería en Informática UTEM. Transforma ideas en tecnología. Proyecto estudiantil."
       />
     )}
+    {/* Tarjeta de Twitter/X en formato resumen. */}
     <meta name="twitter:card" content="summary" />
   </head>
   <body>
+    {/* Enlace para saltar al contenido (accesibilidad): aparece al usar el teclado y evita recorrer todo el menú. */}
     <a class="skip-link" href="#contenido">
       Saltar al contenido principal
     </a>
+    {/* Aquí se inserta el contenido de la página (index.astro). */}
     <slot />
+    {/* Único script de la página: Astro lo convierte en un módulo ligero (carrusel, video diferido, menú, etc.). */}
     <script>
       import "../scripts/experience";
     </script>

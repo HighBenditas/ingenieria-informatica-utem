@@ -1,19 +1,29 @@
 ---
+// Lee las referencias ya preparadas (ordenadas y con la fecha de cita en formato APA).
 import { getPresentedReferences } from "../data/references";
+// Props = datos que recibe el componente.
 interface Props {
+  // ID de la referencia en referencias.json (por ejemplo "carrera").
   source: string;
+  // "number": cita corta que salta a la lista de referencias. "source": enlace directo a la fuente.
   variant?: "number" | "source";
+  // Texto de la cita, si se quiere personalizar.
   label?: string;
 }
 const { source, variant = "number", label } = Astro.props;
+// Busca la referencia pedida entre todas.
 const entry = (await getPresentedReferences()).find((item) => item.id === source);
+// Si el ID no existe, el build FALLA a propósito: así no se publican citas rotas.
 if (!entry) throw new Error("Referencia inexistente: " + source);
+// Nombres abreviados de los autores más frecuentes, para citas cortas.
 const shortAuthors: Record<string, string> = {
   "Universidad Tecnológica Metropolitana": "UTEM",
   "Departamento de Evaluación, Medición y Registro Educacional": "DEMRE",
   "Ministerio de Educación de Chile": "Mineduc",
 };
+// Usa la abreviatura si existe; si no, el nombre completo.
 const shortAuthor = shortAuthors[entry.data.author] ?? entry.data.author;
+// Etiqueta de contexto que se agrega a la cita según el ID (qué dato respalda).
 const sourceContexts: Record<string, string> = {
   carrera: "Carrera",
   malla: "Malla",
@@ -27,12 +37,19 @@ const sourceContexts: Record<string, string> = {
   video: "Video de la carrera",
 };
 const context = sourceContexts[source];
+// Texto corto de la cita. Si se pasó "label", se reemplaza su "s. f." o su año final por la fecha
+// de la referencia; si no, se arma como "Autor · Contexto · Año" (filter(Boolean) omite lo que falte).
 const shortLabel = label
   ? label.replace(/s\. f\.|\b(?:19|20)\d{2}\b$/, entry.citationDate)
   : [shortAuthor, context, entry.citationDate].filter(Boolean).join(" · ");
+// En la variante "source" se muestra el título de la fuente; en la otra, la cita corta.
 const visibleLabel = variant === "source" ? entry.data.title : shortLabel;
 ---
 
+{/* Enlace de la cita.
+    - variante "source": va a la URL de la fuente y marca la clase "citation-source".
+    - variante "number": salta a la lista de referencias (#ref-ID) de esta misma página.
+    aria-label da a los lectores de pantalla la información completa: cita, título, autor y fecha. */}
 <a
   class={variant === "source" ? "citation citation-source" : "citation"}
   href={variant === "source" ? entry.data.url : "#ref-" + source}
@@ -41,6 +58,7 @@ const visibleLabel = variant === "source" ? entry.data.title : shortLabel;
   {variant === "source" ? (
     <>
       {entry.data.title}
+      {/* Flecha decorativa que indica enlace externo. */}
       <span aria-hidden="true">↗</span>
     </>
   ) : (

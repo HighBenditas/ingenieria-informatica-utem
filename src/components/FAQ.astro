@@ -1,11 +1,16 @@
 ---
+// Función de Astro que lee una colección de contenido (aquí, las preguntas frecuentes).
 import { getCollection } from "astro:content";
+// Componente que muestra una cita enlazada a la sección de referencias.
 import Cite from "./Cite.astro";
+// Lee la colección "faq" (src/content/faq.json, validada por un esquema)
+// y la ordena de menor a mayor según el campo "order".
 const questions = (await getCollection("faq")).sort(
   (a, b) => a.data.order - b.data.order,
 );
 ---
 
+{/* Sección de preguntas frecuentes: título a la izquierda, lista a la derecha. */}
 <section id="preguntas" class="section container faq-grid">
   <div>
     <p class="eyebrow">PREGUNTAS FRECUENTES</p>
@@ -16,11 +21,14 @@ const questions = (await getCollection("faq")).sort(
     </h2>
 
     <p>Un primer punto de orientación para seguir explorando.</p>
+    {/* Aclara que las preguntas las eligió el equipo y falta validarlas con postulantes. */}
     <p class="small-note">
       Selección inicial del equipo, sujeta a validación con futuros postulantes.
     </p>
   </div>
   <div class="faq-list">
+    {/* Una pregunta desplegable por cada registro. <details> abre y cierra sin JavaScript.
+        El "+" es decorativo (aria-hidden). */}
     {questions.map(({ data }) => (
       <details>
         <summary>
@@ -28,7 +36,9 @@ const questions = (await getCollection("faq")).sort(
           <span aria-hidden="true">+</span>
         </summary>
         <p>
+          {/* Respuesta y su cita: data.source.id indica en qué referencia se apoya. */}
           {data.answer} <Cite source={data.source.id} />
+          {/* Si la pregunta trae un enlace interno (a otra sección), se muestra después del punto. */}
           {data.internalLink && (
             <>
               {" "}

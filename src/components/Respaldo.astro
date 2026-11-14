@@ -1,7 +1,9 @@
 ---
+// Cita enlazada a las referencias.
 import Cite from "./Cite.astro";
 ---
 
+{/* Sección "Respaldo institucional": acreditación de la universidad y certificación de la carrera. */}
 <section id="respaldo" class="section container">
   <p class="eyebrow">RESPALDO INSTITUCIONAL</p>
   <div class="split-heading">
@@ -16,6 +18,7 @@ import Cite from "./Cite.astro";
     </p>
   </div>
   <div class="backing-grid">
+    {/* Tarjeta principal: acreditación de la universidad (dato de la CNA citado desde la referencia "acreditacion"). */}
     <article class="accreditation">
       <p class="eyebrow">UNIVERSIDAD · ACREDITACIÓN INSTITUCIONAL</p>
       <div class="big-number">
@@ -27,11 +30,13 @@ import Cite from "./Cite.astro";
         de octubre de 2026. Organismo: Comisión Nacional de Acreditación (CNA).{" "}
         <Cite source="acreditacion" />
       </p>
+      {/* Advertencia honesta: la resolución de la CNA aún no se contrasta directamente. */}
       <p class="small-note">
         Resolución CNA actualizada pendiente de contraste directo.
       </p>
     </article>
     <div class="backing-secondary">
+      {/* Certificación de la carrera (distinta de la acreditación de la universidad). */}
       <article>
         <p class="eyebrow">CARRERA · CERTIFICACIÓN</p>
         <h3>Certificación por cinco años</h3>
@@ -45,6 +50,7 @@ import Cite from "./Cite.astro";
           institucional.
         </p>
       </article>
+      {/* Sede donde se imparte la carrera, con su fuente (el folleto con la malla). */}
       <article>
         <p class="eyebrow">TU LUGAR DE ESTUDIO</p>
         <h3>En Ñuñoa, Santiago</h3>

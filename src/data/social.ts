@@ -1,6 +1,9 @@
+// Redes sociales oficiales de la UTEM (las muestra SocialLinks.astro en el pie de página).
+// Nombres de red permitidos. TypeScript rechaza cualquier otro valor.
 export type SocialNetwork =
   "facebook" | "instagram" | "linkedin" | "x" | "youtube";
 
+// Forma que debe tener cada enlace: red (para elegir el ícono), nombre visible y dirección.
 interface SocialLink {
   network: SocialNetwork;
   name: string;
@@ -8,6 +11,7 @@ interface SocialLink {
 }
 
 // Links published at https://www.utem.cl/; checked on 6 November 2026.
+// Enlaces tomados del sitio oficial de la UTEM y revisados el 6 de noviembre de 2026.
 export const socialLinks: SocialLink[] = [
   {
     network: "facebook",

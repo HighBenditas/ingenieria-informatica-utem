@@ -1,11 +1,22 @@
 ---
+// Identificador del video de YouTube (lo que va después de "v=" o de "youtu.be/" en el enlace).
 const videoId: string = "VGQ9TptyvuI";
 ---
 
+{/* Sección del video institucional de Admisión UTEM. */}
 <section id="video" class="section container video-section">
   <p class="eyebrow">VIDEO INSTITUCIONAL</p>
   <h2>Escucha a quienes estudian la carrera</h2>
+  {/* Contenedor con proporción 16:9 (se define en global.css): reserva el espacio y evita saltos de diseño. */}
   <div class="video-frame">
+    {/* data-video-src guarda la dirección del video sin cargarla todavía.
+        El script (experience.ts, setupDeferredVideos) la copia a "src" cuando el video
+        está por entrar en pantalla, para no frenar la carga inicial de la página.
+        youtube-nocookie.com: versión de YouTube que no guarda cookies hasta reproducir.
+        title: nombre del iframe para lectores de pantalla.
+        loading="lazy": el navegador difiere la carga.
+        allow: permisos que YouTube necesita (reproducción y mini reproductor).
+        referrerpolicy: limita la información que se envía a YouTube. */}
     <iframe
       data-video-src={`https://www.youtube-nocookie.com/embed/${videoId}`}
       title="Ingeniería en Informática en la UTEM, video de Admisión UTEM"
@@ -14,6 +25,7 @@ const videoId: string = "VGQ9TptyvuI";
       allowfullscreen
       referrerpolicy="strict-origin-when-cross-origin"
     ></iframe>
+    {/* Alternativa sin JavaScript: si el script no corre, <noscript> muestra el video con src directo. */}
     <noscript>
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -25,6 +37,7 @@ const videoId: string = "VGQ9TptyvuI";
       ></iframe>
     </noscript>
   </div>
+  {/* Aviso de autoría: el video es institucional, no del equipo. El enlace salta a la referencia "video". */}
   <p class="small-note">
     Video publicado por Admisión UTEM (YouTube). Contenido institucional, no
     elaborado por el equipo. <a href="#ref-video">[ver fuente]</a>

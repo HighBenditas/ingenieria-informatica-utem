@@ -1,21 +1,33 @@
 ---
+// Importa la lista de enlaces del menú y los datos generales del sitio (nombre de la universidad).
 import { navigation, site } from "../data/site";
+// Importa el componente que dibuja los íconos (aquí, la flecha del botón).
 import Icon from "./Icon.astro";
 ---
 
+{/* Banner superior: avisa que es un proyecto académico y no un sitio oficial.
+    <aside> = contenido complementario; aria-label lo nombra para lectores de pantalla. */}
 <aside class="academic-banner" aria-label="Información del proyecto">
   <div class="container">
+    {/* Eslogan: se oculta en móvil con CSS (global.css) porque no cabe en una línea. */}
     <span class="banner-slogan">Una guía para tu próxima etapa</span>{" "}
+    {/* Aviso de sitio no oficial: se mantiene en todos los tamaños. */}
     <span>Proyecto académico estudiantil · Sitio no oficial</span>
   </div>
 </aside>
+
+{/* Cabecera fija (sticky) con logo, menú y botón de postulación. */}
 <header class="site-header">
   <div class="container header-inner">
+    {/* Logo y nombre: enlace que lleva al inicio (#inicio).
+        aria-label compone el nombre completo para lectores de pantalla. */}
     <a
       href="#inicio"
       class="brand"
       aria-label={`Ingeniería en Informática, ${site.university}, inicio`}
     >
+      {/* width y height reservan el espacio antes de cargar la imagen (evita saltos de diseño).
+          alt describe la imagen para lectores de pantalla (requisito de accesibilidad). */}
       <img
         class="brand-logo"
         src="/images/logo-utem.svg"
@@ -27,18 +39,25 @@ import Icon from "./Icon.astro";
         <span class="brand-title">Ingeniería en Informática</span>
       </span>
     </a>
+    {/* Menú de escritorio: toma los elementos 1 a 3 de la lista (La carrera,
+        Qué aprenderás, Campo laboral). El 0 (Inicio) ya lo cubre el logo.
+        map() crea un enlace por cada elemento. */}
     <nav class="desktop-nav" aria-label="Navegación principal">
       {navigation.slice(1, 4).map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
     </nav>
+    {/* Botón principal: lleva a la sección de admisión; el ícono es una flecha de 18 px. */}
     <a class="button small header-cta" href="#admision">
       Cómo postular <Icon name="arrow" size={18} />
     </a>
+    {/* Menú de móvil: <details> abre y cierra sin JavaScript.
+        aria-hidden en el ícono ☰ evita que el lector de pantalla lo lea. */}
     <details class="mobile-menu">
       <summary>
         Menú <span aria-hidden="true">☰</span>
       </summary>
+      {/* En móvil se listan todos los enlaces de la lista. */}
       <nav aria-label="Navegación móvil">
         {navigation.map((link) => (
           <a href={link.href}>{link.label}</a>

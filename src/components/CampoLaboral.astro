@@ -1,16 +1,21 @@
 ---
+// Lee la colección "laboral" (src/content/campo-laboral.json, validada por un esquema).
 import { getCollection } from "astro:content";
+// Indicadores de empleabilidad verificados (hoy la lista está vacía).
 import { employmentIndicators } from "../data/site";
 import Cite from "./Cite.astro";
+// Ordena las áreas de desempeño según el campo "order".
 const areas = (await getCollection("laboral")).sort(
   (a, b) => a.data.order - b.data.order,
 );
 ---
 
+{/* Sección "Campo laboral" (fondo oscuro). */}
 <section id="campo-laboral" class="section dark-section">
   <div class="container work-grid">
     <div class="work-intro">
       <p class="eyebrow">CAMPO LABORAL</p>
+      {/* La segunda frase va en un span (title-second) para poder darle su propia línea y espacio con CSS. */}
       <h2>
         Un mundo digital.
         <span class="title-second">Muchas formas de ser parte.</span>
@@ -25,6 +30,8 @@ const areas = (await getCollection("laboral")).sort(
       </a>
     </div>
     <div class="work-list">
+      {/* Una fila por área de desempeño, numerada (0 + posición + 1). target="_blank" abre en
+          pestaña nueva y rel="noopener noreferrer" protege la página de origen. */}
       {areas.map(({ data }, index) => (
         <article>
           <span class="mono">0{index + 1}</span>
@@ -37,11 +44,13 @@ const areas = (await getCollection("laboral")).sort(
           </div>
         </article>
       ))}
+      {/* Fuente del conjunto de áreas. */}
       <p class="work-list-source">
         Referencia del conjunto: <Cite source="carrera" label="Perfil institucional · UTEM · s. f." />
       </p>
     </div>
   </div>
+  {/* Bloque para quien busca su primera experiencia laboral, con enlaces externos referenciales. */}
   <div class="container work-opportunities">
     <h3>¿Buscas tu primera experiencia laboral?</h3>
     <p>Explora oportunidades de práctica profesional y primeros empleos en Chile.</p>
@@ -52,6 +61,8 @@ const areas = (await getCollection("laboral")).sort(
     <p class="work-opportunities-hint">Enlaces externos referenciales. Las ofertas, requisitos y ubicaciones dependen de cada empresa y pueden cambiar.</p>
   </div>
   <div class="container">
+    {/* Si hay indicadores verificados (con valor, año y enlace a la fuente), se muestran.
+        Si no, se muestra un aviso que remite a Mi Futuro: no se publican cifras sin año verificable. */}
     {employmentIndicators.length > 0 ? (
       <dl class="indicators">
         {employmentIndicators.map((item) => (

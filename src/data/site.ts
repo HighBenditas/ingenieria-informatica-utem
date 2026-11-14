@@ -1,14 +1,21 @@
+// Datos generales del sitio que usan varios componentes.
+// Datos generales: título y descripción de la página (SEO), universidad, sede y enlaces oficiales.
 export const site = {
   title: "Ingeniería en Informática UTEM | Explora tu futuro",
   description:
     "Conoce Ingeniería en Informática UTEM: ocho semestres, perfil de egreso, malla curricular, campo laboral y orientación para la admisión 2027. Proyecto estudiantil.",
   university: "Universidad Tecnológica Metropolitana",
   campus: "Campus Ñuñoa",
+  // Página oficial de admisión por PAES.
   admissionsUrl: "https://www.utem.cl/admision/admision-acceso-via-paes/",
+  // PDF oficial con el folleto y la malla.
   curriculumUrl:
     "https://www.utem.cl/wp-content/uploads/2026/05/INGENIERIA_EN_INFORMATICA_UTEM.pdf",
+  // Fecha de la última revisión general del contenido (se muestra en Referencias).
   reviewDate: "5 de noviembre de 2026",
 };
+// Enlaces del menú: destino dentro de la página (href) y texto visible (label).
+// Header.astro usa los elementos 1 a 3 en escritorio y todos en móvil.
 export const navigation = [
   { href: "#inicio", label: "Inicio" },
   { href: "#carrera", label: "La carrera" },
@@ -17,6 +24,9 @@ export const navigation = [
   { href: "#admision", label: "Admisión" },
   { href: "#preguntas", label: "Preguntas frecuentes" },
 ];
+// Competencias del perfil de egreso, reescritas en lenguaje claro (las muestra PerfilEgreso.astro).
+// icon: nombre del ícono (ver Icon.astro). source: ID de la referencia de la que sale.
+// "as const" hace que los valores sean fijos, para que TypeScript compruebe que cada icon existe.
 export const competencies = [
   {
     icon: "code",
@@ -55,6 +65,8 @@ export const competencies = [
     source: "carrera",
   },
 ] as const;
+// Datos de admisión del proceso 2027 (los usan Hero, AccesosRapidos y Admision).
+// weights: ponderación de cada prueba o criterio, en porcentaje.
 export const admissions = {
   process: 2027,
   code: "21030",
@@ -69,13 +81,17 @@ export const admissions = {
   ],
 };
 // Do not publish unsupported figures. Each future indicator must include its year and source.
+// Un indicador de empleabilidad verificado debe traer su valor, su año y el enlace a la fuente.
 export interface VerifiedIndicator {
   label: string;
   value: string;
   year: number;
   sourceUrl: string;
 }
+// Lista vacía a propósito: no se publican cifras sin año y fuente verificables.
+// CampoLaboral.astro los muestra solo cuando haya al menos uno.
 export const employmentIndicators: VerifiedIndicator[] = [];
+// Datos que el equipo aún debe confirmar (se muestran en Referencias, en "Transparencia editorial").
 export const pendingVerification = [
   "Confirmar con la Escuela las diferencias restantes entre la malla web y el folleto PDF.",
   "Verificar créditos del Sistema de Créditos Transferibles (SCT) y prerrequisitos en una resolución vigente antes de agregarlos.",

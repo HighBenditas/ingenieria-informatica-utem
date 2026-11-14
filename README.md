@@ -4,10 +4,35 @@ Landing page académica estudiantil para orientar a futuros postulantes, especia
 
 No es un sitio oficial de la Universidad Tecnológica Metropolitana. La información debe contrastarse con las fuentes institucionales y su proceso de admisión correspondiente.
 
+## Sitio publicado
+
+- https://paginawebutem.netlify.app
+
 ## Integrantes
 
-- Integrante 1: **[Completar nombre]**.
-- Integrante 2: **[Completar nombre]**.
+- Integrante 1: Benjamin Marti Morales (bmarti@utem.cl)
+- Integrante 2: Kevin Flores Peña (kfloresp@utem.cl)
+
+## Guía rápida para la Escuela
+
+**¿Dónde veo la página?** En https://paginawebutem.netlify.app
+
+**¿Cómo cambio un dato (por ejemplo, una pregunta frecuente)?**
+
+1. Abra la carpeta `src/content/` del proyecto.
+2. Abra el archivo que corresponde y edite el texto (por ejemplo, `faq.json` para las preguntas frecuentes). La tabla de la sección "Actualizar contenidos" indica qué archivo corresponde a cada tema.
+3. En la terminal escriba `npm run verify`. Si no muestra errores, el dato es válido.
+4. Suba el cambio al repositorio. La página se actualiza sola en pocos minutos.
+
+**¿Qué pasa si me equivoco?** El comando del paso 3 avisa del error y no permite publicar un dato inválido.
+
+**¿Cómo veo la página en mi computador antes de publicar?** Siga los pasos de "Instalación y ejecución" más abajo y abra la dirección que muestra la terminal.
+
+**Glosario mínimo**
+
+- **Repositorio:** el espacio donde se guarda el código y su historial de cambios.
+- **Terminal:** la ventana donde se escriben comandos, como `npm run verify`.
+- **Despliegue:** la publicación del sitio en internet para que cualquiera lo vea.
 
 ## Tecnologías
 
@@ -54,21 +79,21 @@ No editar `dist/`, `.astro/` ni `node_modules/`: son generados. `npm ci` requier
 
 ## Actualizar contenidos
 
-| Contenido | Archivo | Consideraciones |
-| --- | --- | --- |
-| Asignaturas | `src/content/malla.json` | Conservar semestres, año e identificadores. Cada registro referencia una fuente. Validar cualquier cambio con documentación oficial. |
-| Campo laboral | `src/content/campo-laboral.json` | Orden, título, descripción y fuente. |
-| Preguntas frecuentes | `src/content/faq.json` | Mantener destinos reales de `internalLink`. |
-| Referencias | `src/content/referencias.json` | ID y número únicos, autor, fecha, título, URL y consulta real. No inventar fechas. |
-| Comparación detallada | `src/content/comparacion.json` | Nombre, duración, tres apartados y fuente validada. |
-| Datos generales y admisión | `src/data/site.ts` | Campus, proceso, ponderaciones, competencias y URLs. Parte de la ficha y explicaciones breves permanece en los componentes correspondientes. |
-| Fotografías y créditos | `src/data/hero.ts` y `src/assets/` | Los créditos se generan con los datos del carrusel. No atribuir las fotografías de archivo a UTEM. |
+| Contenido                  | Archivo                            | Consideraciones                                                                                                                              |
+| -------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Asignaturas                | `src/content/malla.json`           | Conservar semestres, año e identificadores. Cada registro referencia una fuente. Validar cualquier cambio con documentación oficial.         |
+| Campo laboral              | `src/content/campo-laboral.json`   | Orden, título, descripción y fuente.                                                                                                         |
+| Preguntas frecuentes       | `src/content/faq.json`             | Mantener destinos reales de `internalLink`.                                                                                                  |
+| Referencias                | `src/content/referencias.json`     | ID y número únicos, autor, fecha, título, URL y consulta real. No inventar fechas.                                                           |
+| Comparación detallada      | `src/content/comparacion.json`     | Nombre, duración, tres apartados y fuente validada.                                                                                          |
+| Datos generales y admisión | `src/data/site.ts`                 | Campus, proceso, ponderaciones, competencias y URLs. Parte de la ficha y explicaciones breves permanece en los componentes correspondientes. |
+| Fotografías y créditos     | `src/data/hero.ts` y `src/assets/` | Los créditos se generan con los datos del carrusel. No atribuir las fotografías de archivo a UTEM.                                           |
 
 Después de editar, ejecutar `npm run verify`. La verificación rechaza anclas inexistentes, recursos locales ausentes, IDs o números de fuente duplicados y relaciones de fuentes inexistentes. Astro valida los esquemas.
 
 ## Publicación en Netlify
 
-La URL pública definitiva **no está confirmada en el repositorio**.
+La URL pública definitiva: https://paginawebutem.netlify.app
 
 1. Importar el repositorio en Netlify y seleccionar la rama acordada por el equipo.
 2. Usar la raíz del repositorio, comando `npm run verify` y carpeta de publicación `dist`. `netlify.toml` ya declara estos valores y Node 24.
@@ -92,4 +117,4 @@ Se utilizan fuentes institucionales UTEM, DEMRE y Ministerio de Educación, iden
 
 Las imágenes del carrusel son fotografías referenciales de Pexels; autores y originales están registrados en `src/data/hero.ts` y visibles en los créditos. Se conserva el video institucional con su referencia.
 
-El desarrollo recibió asistencia de Codex y ChatGPT. El alcance verificable, las decisiones técnicas y las tareas de validación del equipo se describen en [uso de IA](docs/uso-ia.md).
+El desarrollo recibió asistencia de Codex, Claude y ChatGPT. El alcance verificable, las decisiones técnicas y las tareas de validación del equipo se describen en [uso de IA](docs/uso-ia.md).

@@ -1,9 +1,13 @@
 ---
+// Lista de competencias del perfil de egreso (definida en src/data/site.ts).
 import { competencies } from "../data/site";
+// Cita enlazada a las referencias.
 import Cite from "./Cite.astro";
+// Íconos de cada competencia.
 import Icon from "./Icon.astro";
 ---
 
+{/* Sección "Perfil de egreso": lo que podrá hacer quien se titula, en lenguaje claro. */}
 <section id="perfil" class="section soft-section">
   <div class="container">
     <p class="eyebrow">TU PERFIL PROFESIONAL</p>
@@ -18,6 +22,7 @@ import Icon from "./Icon.astro";
       </p>
     </div>
     <div class="competency-grid">
+      {/* Una tarjeta por competencia: ícono, número correlativo (0 + posición + 1), título y descripción. */}
       {competencies.map((item, index) => (
         <article class="competency">
           <div class="competency-top">
@@ -29,6 +34,7 @@ import Icon from "./Icon.astro";
         </article>
       ))}
     </div>
+    {/* Distingue el texto del equipo (síntesis) del dato institucional, y cita la fuente. */}
     <p class="small-note">
       Síntesis del equipo a partir del perfil institucional. Referencia del
       conjunto: <Cite source="carrera" label="Perfil institucional · UTEM · s. f." />

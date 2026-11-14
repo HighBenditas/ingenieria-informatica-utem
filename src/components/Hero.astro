@@ -1,12 +1,17 @@
 ---
+// Cita enlazada a las referencias.
 import Cite from "./Cite.astro";
+// Carrusel de imágenes con el título principal (portada visual).
 import HeroCarousel from "./HeroCarousel.astro";
+// Datos de admisión (código DEMRE) y generales (sede o campus).
 import { admissions, site } from "../data/site";
 ---
 
+{/* Portada (hero): carrusel + ficha con los datos básicos de la carrera. */}
 <section id="inicio" class="hero">
   <HeroCarousel />
   <div class="container">
+    {/* Ficha de datos. <dl> es una lista de términos (dt) y sus valores (dd). */}
     <dl class="facts">
       <div>
         <dt>Duración</dt>
@@ -38,17 +43,20 @@ import { admissions, site } from "../data/site";
       </div>
       <div>
         <dt>Sede o campus</dt>
+        {/* Valor tomado de src/data/site.ts. */}
         <dd>
           {site.campus}
         </dd>
       </div>
       <div>
         <dt>Código DEMRE</dt>
+        {/* Valor tomado de src/data/site.ts. */}
         <dd>
           {admissions.code}
         </dd>
       </div>
     </dl>
+    {/* Fuentes de los datos de arriba, con la primera aparición de la sigla DEMRE explicada. */}
     <p class="facts-sources">
       Fuentes: <Cite source="carrera" label="Datos de la carrera · UTEM · s. f." />
       <span aria-hidden="true"> · </span>

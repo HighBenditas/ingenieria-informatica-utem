@@ -1,10 +1,15 @@
 ---
+// Lee la colección "malla" (src/content/malla.json, validada por un esquema).
 import { getCollection } from "astro:content";
+// Datos generales (aquí, el enlace a la malla oficial).
 import { site } from "../data/site";
 import Cite from "./Cite.astro";
+// Ordena los semestres de menor a mayor.
 const semesters = (await getCollection("malla")).sort(
   (a, b) => a.data.semester - b.data.semester,
 );
+// Validación: si no hay exactamente 8 semestres distintos, el build FALLA a propósito
+// para no publicar una malla incompleta o con semestres repetidos.
 if (
   semesters.length !== 8 ||
   new Set(semesters.map((s) => s.data.semester)).size !== 8
@@ -13,6 +18,7 @@ if (
 }
 ---
 
+{/* Sección "Plan de estudios": malla curricular por semestre, con un filtro para destacar uno. */}
 <section id="malla" class="section curriculum-section">
   <div class="container curriculum-container">
     <p class="eyebrow">PLAN DE ESTUDIOS</p>
@@ -25,6 +31,8 @@ if (
     </div>
     <div class="curriculum">
       <div class="curriculum-toolbar">
+        {/* Filtro de semestre: botones de opción (radio). El valor 0 es "Ver toda la malla";
+            del 1 al 8 destacan ese semestre. El script (experience.ts) aplica el estado. */}
         <fieldset class="semester-filter">
           <legend>Destacar un semestre</legend>
           {[0, ...semesters.map(({ data }) => data.semester)].map(
@@ -45,6 +53,8 @@ if (
             ),
           )}
         </fieldset>
+        {/* Leyenda: explica los tres estados visuales (anteriores, seleccionado, siguientes).
+            Los cuadritos son decorativos (aria-hidden). */}
         <div class="curriculum-key" aria-label="Estados de la vista">
           <span>
             <i class="key-past" aria-hidden="true"></i> Semestres anteriores
@@ -57,6 +67,7 @@ if (
           </span>
         </div>
       </div>
+      {/* Indicación de uso. La frase del teclado se oculta en móvil (clase keyboard-hint, en CSS). */}
       <p id="curriculum-scroll-help" class="curriculum-scroll-help">
         <span aria-hidden="true">↔</span> Desliza la malla horizontalmente para
         recorrer los ocho semestres.
@@ -64,6 +75,8 @@ if (
           Con teclado, enfoca la malla y usa las flechas.
         </span>
       </p>
+      {/* Zona con desplazamiento horizontal. tabindex="0" permite recorrerla con el teclado;
+          aria-describedby la vincula con la indicación de arriba. */}
       <div
         class="curriculum-scroll"
         role="region"
@@ -72,6 +85,8 @@ if (
         tabindex="0"
       >
         <div class="semester-grid">
+          {/* Una columna por semestre. data-year y data-semester los usa el script y el CSS
+              para marcar el estado (anterior, seleccionado, siguiente). */}
           {semesters.map(({ data }) => (
             <article
               class="semester"
@@ -81,6 +96,7 @@ if (
               <div class="semester-heading">
                 <span class="mono">AÑO {data.year}</span>
                 <h3>Semestre {data.semester}</h3>
+                {/* Cuatro textos de estado; el CSS muestra solo el que corresponde. */}
                 <p class="semester-state">
                   <span class="state-default">Plan de estudios</span>
                   <span class="state-past">Semestre anterior</span>
@@ -89,6 +105,8 @@ if (
                 </p>
               </div>
               <ul>
+                {/* Una tarjeta por asignatura. El número (01, 02...) se arma con padStart para
+                    que siempre tenga dos dígitos; es decorativo (aria-hidden). */}
                 {data.courses.map((course, index) => (
                   <li class="course-card">
                     <span class="course-number" aria-hidden="true">
@@ -102,6 +120,7 @@ if (
           ))}
         </div>
       </div>
+      {/* Enlace a la malla oficial y su cita. */}
       <div class="curriculum-source-link">
         <a class="text-link" href={site.curriculumUrl}>
           Consultar malla oficial <span aria-hidden="true">↗</span>
@@ -111,6 +130,7 @@ if (
         </span>
       </div>
     </div>
+    {/* Mensaje invisible: el script anuncia aquí qué semestre se destacó (role="status"). */}
     <p
       class="sr-only"
       data-semester-announcement
