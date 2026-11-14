@@ -4,6 +4,9 @@ import Cite from "./Cite.astro";
 import { getCollection } from "astro:content";
 // Ordena las carreras comparadas según el campo "order".
 const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.order - b.data.order);
+// La primera es la carrera que se está explorando; las demás son las carreras afines.
+const [primary, ...related] = comparison;
+if (!primary) throw new Error("La comparación necesita al menos una carrera.");
 ---
 
 {/* Sección "La carrera": qué es, un ejemplo y en qué se diferencia de carreras afines. */}
@@ -84,32 +87,29 @@ const comparison = (await getCollection("comparacion")).sort((a, b) => a.data.or
       partir de información oficial de cada carrera.{" "}
       <a href="#referencias">Consultar bibliografía</a>.
     </p>
-    {/* Tarjeta de la carrera que se está explorando. variant="source" enlaza directamente a la fuente. */}
+    {/* Tarjeta de la carrera que se está explorando (primer registro de comparacion.json).
+        variant="source" enlaza directamente a la fuente. */}
     <article class="comparison-primary">
       <p class="eyebrow">LA CARRERA QUE ESTÁS EXPLORANDO</p>
       <div>
-        <h4>Ingeniería en Informática</h4>
-        <p class="comparison-duration">8 semestres</p>
-        <p>Software, sistemas y redes.</p>
-        <Cite source="carrera" variant="source" />
+        <h4>{primary.data.name}</h4>
+        <p class="comparison-duration">{primary.data.duration}</p>
+        <p>{primary.data.summary}</p>
+        <Cite source={primary.data.source.id} variant="source" />
       </div>
     </article>
-    {/* Dos carreras afines, cada una con su duración y su fuente oficial. */}
+    {/* Carreras afines (resto de comparacion.json), cada una con su duración, resumen y fuente oficial. */}
     <div class="comparison-related">
       <p class="eyebrow">OTRAS CARRERAS RELACIONADAS</p>
       <div class="comparison-related-grid">
-        <article>
-          <h4>Ingeniería Civil en Computación mención Informática</h4>
-          <p class="comparison-duration">11 semestres</p>
-          <p>Ingeniería, computación y proyectos complejos.</p>
-          <Cite source="civil" variant="source" />
-        </article>
-        <article>
-          <h4>Ingeniería Civil en Ciencia de Datos</h4>
-          <p class="comparison-duration">11 semestres</p>
-          <p>Matemática, estadística y análisis de datos.</p>
-          <Cite source="datos" variant="source" />
-        </article>
+        {related.map(({ data }) => (
+          <article>
+            <h4>{data.name}</h4>
+            <p class="comparison-duration">{data.duration}</p>
+            <p>{data.summary}</p>
+            <Cite source={data.source.id} variant="source" />
+          </article>
+        ))}
       </div>
     </div>
   </div>

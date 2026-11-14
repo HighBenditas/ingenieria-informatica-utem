@@ -30,15 +30,15 @@ const areas = (await getCollection("laboral")).sort(
       </a>
     </div>
     <div class="work-list">
-      {/* Una fila por área de desempeño, numerada (0 + posición + 1). target="_blank" abre en
-          pestaña nueva y rel="noopener noreferrer" protege la página de origen. */}
+      {/* Una fila por área de desempeño, numerada (0 + posición + 1). Los enlaces abren en la
+          misma pestaña: abrir pestañas nuevas sin aviso desorienta a usuarios de lectores de pantalla. */}
       {areas.map(({ data }, index) => (
         <article>
           <span class="mono">0{index + 1}</span>
           <div>
             <h3>{data.title}</h3>
             <p>{data.description}</p>
-            <a class="work-offers-link" href={data.offersUrl} target="_blank" rel="noopener noreferrer">
+            <a class="work-offers-link" href={data.offersUrl}>
               Ver ofertas en Chile <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -54,7 +54,7 @@ const areas = (await getCollection("laboral")).sort(
   <div class="container work-opportunities">
     <h3>¿Buscas tu primera experiencia laboral?</h3>
     <p>Explora oportunidades de práctica profesional y primeros empleos en Chile.</p>
-    <a class="work-offers-link" href="https://firstjob.me/ofertas" target="_blank" rel="noopener noreferrer">
+    <a class="work-offers-link" href="https://firstjob.me/ofertas">
       Ver prácticas y primeros trabajos <span aria-hidden="true">↗</span>
     </a>
     <p class="work-opportunities-hint">En FirstJob, selecciona Chile y los filtros de especialidad adecuados.</p>

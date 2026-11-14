@@ -52,7 +52,8 @@ src/scripts/        Carrusel, revelado, menú móvil y malla
 src/styles/         Estilos generales y de interacción
 public/            Recursos estáticos: logos, favicon e imagen social
 scripts/           Verificador del HTML y SEO de producción
-docs/              Verificaciones pendientes y uso de IA
+docs/              Anexo de uso de IA, trazabilidad de prompts y revisión de fuentes
+INFORME.md         Informe del proyecto
 astro.config.mjs   URL pública e integración del sitemap
 netlify.toml       Build, carpeta pública y cabeceras HTTP
 ```
@@ -85,8 +86,10 @@ No editar `dist/`, `.astro/` ni `node_modules/`: son generados. `npm ci` requier
 | Campo laboral              | `src/content/campo-laboral.json`   | Orden, título, descripción y fuente.                                                                                                         |
 | Preguntas frecuentes       | `src/content/faq.json`             | Mantener destinos reales de `internalLink`.                                                                                                  |
 | Referencias                | `src/content/referencias.json`     | ID y número únicos, autor, fecha, título, URL y consulta real. No inventar fechas.                                                           |
-| Comparación detallada      | `src/content/comparacion.json`     | Nombre, duración, tres apartados y fuente validada.                                                                                          |
-| Datos generales y admisión | `src/data/site.ts`                 | Campus, proceso, ponderaciones, competencias y URLs. Parte de la ficha y explicaciones breves permanece en los componentes correspondientes. |
+| Comparación de carreras    | `src/content/comparacion.json`     | Nombre, duración, resumen de una línea, tres apartados y fuente validada. El primer registro es la carrera que se explora.                   |
+| Respaldo institucional     | `src/content/respaldo.json`        | Acreditación, certificación y sede, cada una con su fuente. El registro con `order` 1 es la tarjeta principal.                              |
+| Pasos de admisión          | `src/content/admision.json`        | Título, texto, enlace opcional y una o más fuentes (`sources`).                                                                              |
+| Datos generales y admisión | `src/data/site.ts`                 | Ficha de la portada (`careerFacts`), campus, proceso, código DEMRE, ponderaciones, competencias y URLs.                                     |
 | Fotografías y créditos     | `src/data/hero.ts` y `src/assets/` | Los créditos se generan con los datos del carrusel. No atribuir las fotografías de archivo a UTEM.                                           |
 
 Después de editar, ejecutar `npm run verify`. La verificación rechaza anclas inexistentes, recursos locales ausentes, IDs o números de fuente duplicados y relaciones de fuentes inexistentes. Astro valida los esquemas.
@@ -109,12 +112,12 @@ Para una prueba técnica aislada puede asignarse `SITE_URL=https://example.org` 
 
 `npm run verify` comprueba estructura, ocho semestres, 44 asignaturas, tres diapositivas y un módulo de interacción. Con URL configurada también verifica canonical, Open Graph, robots y los archivos de sitemap. Estas pruebas no reemplazan navegación real, Lighthouse ni una auditoría de accesibilidad.
 
-Consultar [verificaciones de entrega](docs/verificaciones-entrega.md) para las mediciones públicas y las capturas responsivas pendientes. No hay puntuaciones Lighthouse o CompliaScan certificadas en este repositorio.
+Los resultados de Lighthouse (PageSpeed Insights) y CompliaScan, y la revisión del diseño responsivo, están en la sección 9 del [informe del proyecto](INFORME.md).
 
 ## Fuentes, créditos y asistencia de IA
 
-Se utilizan fuentes institucionales UTEM, DEMRE y Ministerio de Educación, identificadas en `referencias.json` y accesibles en la sección de referencias. Su presencia no garantiza vigencia: el equipo debe revisar los datos y resolver las observaciones académicas pendientes antes de la entrega.
+Se utilizan fuentes institucionales UTEM, DEMRE y Ministerio de Educación, identificadas en `referencias.json` y accesibles en la sección de referencias. Al actualizar un dato, conviene revisar que su fuente siga vigente.
 
 Las imágenes del carrusel son fotografías referenciales de Pexels; autores y originales están registrados en `src/data/hero.ts` y visibles en los créditos. Se conserva el video institucional con su referencia.
 
-El desarrollo recibió asistencia de Codex, Claude y ChatGPT. El alcance verificable, las decisiones técnicas y las tareas de validación del equipo se describen en [uso de IA](docs/uso-ia.md).
+El desarrollo recibió asistencia de Codex, Claude y ChatGPT. La declaración completa (herramienta, tarea, prompt y cambios al resultado) está en el [anexo de uso de IA](docs/anexo-uso-ia.md).

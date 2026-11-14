@@ -81,11 +81,47 @@ const comparacion = defineCollection({
     // Duración (por ejemplo "8 semestres") y nombre de la carrera.
     duration: text,
     name: text,
+    // Resumen de una línea que se muestra en la tarjeta de comparación.
+    summary: text,
     // Exactamente tres apartados, cada uno con etiqueta y texto.
     details: z.array(z.object({ label: text, text })).length(3),
     source: reference("referencias"),
   }),
 });
 
+// Enlace opcional: dirección válida y texto visible.
+const link = z.object({ href: z.url(), label: text }).optional();
+
+// Respaldo institucional (src/content/respaldo.json): acreditación, certificación y sede.
+const respaldo = defineCollection({
+  loader: file("src/content/respaldo.json"),
+  schema: z.object({
+    // El registro con order 1 se muestra como tarjeta principal.
+    order: z.number().int().positive(),
+    eyebrow: text,
+    // Cifra destacada opcional (por ejemplo "5" "años").
+    highlight: z.object({ value: text, unit: text }).optional(),
+    title: text,
+    text,
+    // Nota aclaratoria opcional, en letra más pequeña.
+    note: text.optional(),
+    link,
+    source: reference("referencias"),
+  }),
+});
+
+// Pasos de admisión (src/content/admision.json).
+const admision = defineCollection({
+  loader: file("src/content/admision.json"),
+  schema: z.object({
+    order: z.number().int().positive(),
+    title: text,
+    text,
+    link,
+    // Uno o más IDs de referencias; cada uno debe existir.
+    sources: z.array(reference("referencias")).min(1),
+  }),
+});
+
 // Lista de colecciones que Astro debe conocer.
-export const collections = { referencias, malla, laboral, faq, comparacion };
+export const collections = { referencias, malla, laboral, faq, comparacion, respaldo, admision };

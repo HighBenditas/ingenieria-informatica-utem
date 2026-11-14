@@ -27,14 +27,12 @@ const icons = {
   {/* Un enlace por red. Se busca su ícono en el diccionario según el campo "network". */}
   {socialLinks.map(({ network, name, url }) => {
     const SocialIcon = icons[network];
-    // target="_blank" abre en pestaña nueva; rel="noopener noreferrer" evita que la página abierta
-    // acceda a esta. aria-label avisa a lectores de pantalla que abre una pestaña nueva.
+    // El enlace abre en la misma pestaña (abrir pestañas nuevas sin aviso desorienta).
+    // aria-label da el nombre del enlace a lectores de pantalla, porque el ícono no tiene texto.
     return (
       <a
         href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`UTEM en ${name} (abre una pestaña nueva)`}
+        aria-label={`UTEM en ${name}`}
         title={`UTEM en ${name}`}
       >
         {/* fill="currentColor": el ícono toma el color del texto. aria-hidden y focusable="false":

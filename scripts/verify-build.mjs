@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 
 // ---------- 1. Contenido (archivos JSON de src/content) ----------
 // Las cinco colecciones que se revisan.
-const contentNames = ["referencias", "malla", "campo-laboral", "faq", "comparacion"];
+const contentNames = ["referencias", "malla", "campo-laboral", "faq", "comparacion", "respaldo", "admision"];
 // Lee cada JSON y comprueba que no haya IDs repetidos dentro de la misma colección.
 // Object.fromEntries arma un objeto { nombre: lista de registros }.
 const content = Object.fromEntries(contentNames.map((name) => {
@@ -22,9 +22,11 @@ const sourceIds = new Set(content.referencias.map((entry) => entry.id));
 assert.equal(new Set(content.referencias.map((entry) => entry.number)).size,
   content.referencias.length, "Números de referencias duplicados");
 // Cada registro de las demás colecciones debe citar una referencia que exista.
+// Algunos registros tienen una sola fuente ("source") y otros varias ("sources").
 for (const name of contentNames.filter((name) => name !== "referencias"))
   for (const entry of content[name])
-    assert(sourceIds.has(entry.source), `Fuente inexistente en ${name}: ${entry.source}`);
+    for (const source of entry.sources ?? [entry.source])
+      assert(sourceIds.has(source), `Fuente inexistente en ${name}: ${source}`);
 
 // ---------- 2. Estructura del HTML generado ----------
 // Lee la página final que se publicará.

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "acreditacion",
+    "order": 1,
+    "eyebrow": "UNIVERSIDAD · ACREDITACIÓN INSTITUCIONAL",
+    "highlight": { "value": "5", "unit": "años" },
+    "title": "Nivel Avanzado",
+    "text": "Hasta octubre de 2031, según la actualización publicada por UTEM el 18 de octubre de 2026. Organismo: Comisión Nacional de Acreditación (CNA).",
+    "note": "Resolución CNA actualizada pendiente de contraste directo.",
+    "source": "acreditacion"
+  },
+  {
+    "id": "certificacion",
+    "order": 2,
+    "eyebrow": "CARRERA · CERTIFICACIÓN",
+    "title": "Certificación por cinco años",
+    "text": "Del 16 de junio de 2025 al 16 de junio de 2030. Agencia Acreditadora de Chile y Consejo Nacional de Acreditación en Informática y Computación (CONAIC), México.",
+    "note": "Es una certificación de carrera, distinta de la acreditación institucional.",
+    "source": "carrera"
+  },
+  {
+    "id": "sede",
+    "order": 3,
+    "eyebrow": "TU LUGAR DE ESTUDIO",
+    "title": "En Ñuñoa, Santiago",
+    "text": "Av. José Pedro Alessandri 1242. El folleto identifica la sede como Campus Ñuñoa.",
+    "link": {
+      "href": "https://www.utem.cl/carreras/ingenieria-en-informatica/",
+      "label": "Conoce la información de la sede ↗"
+    },
+    "source": "malla"
+  }
+]

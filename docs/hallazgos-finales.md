@@ -38,10 +38,3 @@ El calendario identifica el proceso 2027, pero su registro no tiene fecha de pub
 
 Las fechas registradas de la oferta, el manual de identidad y el video requieren confirmar su procedencia documental si el equipo no conserva evidencia. No se sustituyen por fechas inferidas desde URLs ni se actualizan consultas históricas como si fueran nuevas. La fecha de la noticia de acreditación sí aparece en su página institucional. Este registro no certifica exactitud APA de metadatos todavía no confirmados.
 
-## Pendientes humanos y de entrega
-
-- Completar nombres de integrantes y URL pública cuando estén confirmados; el README ya los identifica como pendientes.
-- Confirmar con la Escuela el plan para ingreso 2027 y la denominación del campus: el folleto dice Ñuñoa y la ficha web Macul.
-- Contrastar acreditación con la resolución CNA vigente.
-- Completar matriz de fuentes, investigación de audiencia, wireframes, validación con participantes, informe y documentación de IA con evidencias auténticas.
-- Después de publicar, medir la versión final con PageSpeed Insights y CompliaScan. Las pruebas locales no acreditan esos resultados públicos.

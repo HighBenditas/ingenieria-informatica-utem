@@ -1,9 +1,17 @@
 ---
+// Lee la colección "respaldo" (src/content/respaldo.json, validada por un esquema).
+import { getCollection } from "astro:content";
 // Cita enlazada a las referencias.
 import Cite from "./Cite.astro";
+// Ordena los reconocimientos según el campo "order".
+const items = (await getCollection("respaldo")).sort((a, b) => a.data.order - b.data.order);
+// El primero (la acreditación de la universidad) se muestra como tarjeta principal; el resto, al lado.
+const [main, ...secondary] = items;
+if (!main) throw new Error("Respaldo institucional necesita al menos un registro.");
 ---
 
-{/* Sección "Respaldo institucional": acreditación de la universidad y certificación de la carrera. */}
+{/* Sección "Respaldo institucional": acreditación de la universidad, certificación de la carrera y sede.
+    Los textos y sus fuentes están en src/content/respaldo.json. */}
 <section id="respaldo" class="section container">
   <p class="eyebrow">RESPALDO INSTITUCIONAL</p>
   <div class="split-heading">
@@ -18,53 +26,40 @@ import Cite from "./Cite.astro";
     </p>
   </div>
   <div class="backing-grid">
-    {/* Tarjeta principal: acreditación de la universidad (dato de la CNA citado desde la referencia "acreditacion"). */}
+    {/* Tarjeta principal, con la cifra destacada (por ejemplo "5 años") si el registro la tiene. */}
     <article class="accreditation">
-      <p class="eyebrow">UNIVERSIDAD · ACREDITACIÓN INSTITUCIONAL</p>
-      <div class="big-number">
-        5 <span>años</span>
-      </div>
-      <h3>Nivel Avanzado</h3>
+      <p class="eyebrow">{main.data.eyebrow}</p>
+      {main.data.highlight && (
+        <div class="big-number">
+          {main.data.highlight.value} <span>{main.data.highlight.unit}</span>
+        </div>
+      )}
+      <h3>{main.data.title}</h3>
       <p>
-        Hasta octubre de 2031, según la actualización publicada por UTEM el 18
-        de octubre de 2026. Organismo: Comisión Nacional de Acreditación (CNA).{" "}
-        <Cite source="acreditacion" />
+        {main.data.text}{" "}
+        <Cite source={main.data.source.id} />
       </p>
-      {/* Advertencia honesta: la resolución de la CNA aún no se contrasta directamente. */}
-      <p class="small-note">
-        Resolución CNA actualizada pendiente de contraste directo.
-      </p>
+      {/* Nota aclaratoria, si existe. */}
+      {main.data.note && <p class="small-note">{main.data.note}</p>}
     </article>
+    {/* Tarjetas secundarias: certificación de la carrera y sede. */}
     <div class="backing-secondary">
-      {/* Certificación de la carrera (distinta de la acreditación de la universidad). */}
-      <article>
-        <p class="eyebrow">CARRERA · CERTIFICACIÓN</p>
-        <h3>Certificación por cinco años</h3>
-        <p>
-          Del 16 de junio de 2025 al 16 de junio de 2030.
-          Agencia Acreditadora de Chile y Consejo Nacional de Acreditación en
-          Informática y Computación (CONAIC), México. <Cite source="carrera" />
-        </p>
-        <p class="small-note">
-          Es una certificación de carrera, distinta de la acreditación
-          institucional.
-        </p>
-      </article>
-      {/* Sede donde se imparte la carrera, con su fuente (el folleto con la malla). */}
-      <article>
-        <p class="eyebrow">TU LUGAR DE ESTUDIO</p>
-        <h3>En Ñuñoa, Santiago</h3>
-        <p>
-          Av. José Pedro Alessandri 1242. El folleto identifica la sede como
-          Campus Ñuñoa. <Cite source="malla" />
-        </p>
-        <a
-          class="text-link"
-          href="https://www.utem.cl/carreras/ingenieria-en-informatica/"
-        >
-          Conoce la información de la sede ↗
-        </a>
-      </article>
+      {secondary.map(({ data }) => (
+        <article>
+          <p class="eyebrow">{data.eyebrow}</p>
+          <h3>{data.title}</h3>
+          <p>
+            {data.text} <Cite source={data.source.id} />
+          </p>
+          {data.note && <p class="small-note">{data.note}</p>}
+          {/* Enlace a más información, si el registro lo tiene. */}
+          {data.link && (
+            <a class="text-link" href={data.link.href}>
+              {data.link.label}
+            </a>
+          )}
+        </article>
+      ))}
     </div>
   </div>
 </section>

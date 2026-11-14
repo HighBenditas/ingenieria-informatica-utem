@@ -3,58 +3,36 @@
 import Cite from "./Cite.astro";
 // Carrusel de imágenes con el título principal (portada visual).
 import HeroCarousel from "./HeroCarousel.astro";
-// Datos de admisión (código DEMRE) y generales (sede o campus).
-import { admissions, site } from "../data/site";
+// Ficha de datos de la carrera (duración, jornada, título, grado, sede y código), en src/data/site.ts.
+import { careerFacts } from "../data/site";
 ---
 
 {/* Portada (hero): carrusel + ficha con los datos básicos de la carrera. */}
 <section id="inicio" class="hero">
   <HeroCarousel />
   <div class="container">
-    {/* Ficha de datos. <dl> es una lista de términos (dt) y sus valores (dd). */}
+    {/* Ficha de datos. <dl> es una lista de términos (dt) y sus valores (dd).
+        Si el dato tiene un número destacado (emphasis), va en negrita antes del texto;
+        si tiene varias líneas, se separan con un salto de línea. */}
     <dl class="facts">
-      <div>
-        <dt>Duración</dt>
-        <dd>
-          <strong>8</strong> semestres
-        </dd>
-      </div>
-      <div>
-        <dt>Jornada</dt>
-        <dd>
-          Diurna
-        </dd>
-      </div>
-      <div>
-        <dt>Título profesional</dt>
-        <dd>
-          Ingeniera / Ingeniero
-          <br />
-          en Informática
-        </dd>
-      </div>
-      <div>
-        <dt>Grado académico</dt>
-        <dd>
-          Licenciada / Licenciado
-          <br />
-          en Informática
-        </dd>
-      </div>
-      <div>
-        <dt>Sede o campus</dt>
-        {/* Valor tomado de src/data/site.ts. */}
-        <dd>
-          {site.campus}
-        </dd>
-      </div>
-      <div>
-        <dt>Código DEMRE</dt>
-        {/* Valor tomado de src/data/site.ts. */}
-        <dd>
-          {admissions.code}
-        </dd>
-      </div>
+      {careerFacts.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>
+            {fact.emphasis && (
+              <>
+                <strong>{fact.emphasis}</strong>{" "}
+              </>
+            )}
+            {fact.lines.map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))}
+          </dd>
+        </div>
+      ))}
     </dl>
     {/* Fuentes de los datos de arriba, con la primera aparición de la sigla DEMRE explicada. */}
     <p class="facts-sources">

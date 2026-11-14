@@ -761,12 +761,11 @@
 .weights-block,
 .faq-grid,
 .references-section > .container {
-  transition:
-    opacity 0.65s ease,
-    transform 0.65s cubic-bezier(0.2, 0.7, 0.3, 1);
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
+/* La sección solo se desplaza 24 px; no se vuelve transparente. Antes usaba opacity: 0 y, si un
+   auditor revisaba la página a mitad de la animación, el texto casi invisible fallaba el contraste. */
 .reveal-pending {
-  opacity: 0;
   transform: translateY(24px);
 }
 @media (min-width: 1280px) {
@@ -970,4 +969,48 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* ---------- Ajustes de accesibilidad (CompliaScan / WCAG 2.2) ---------- */
+/* Piso de 12 px para los textos pequeños: los auditores marcan como difícil de leer
+   cualquier texto menor a 12 px. Se usa !important porque algunas de estas reglas ya
+   tenían tamaños fijados con !important o dentro de media queries. */
+.academic-banner,
+.eyebrow,
+.mobile-menu summary,
+.carousel-play,
+.hero-credit,
+.facts dt,
+.facts-sources,
+.citation,
+.process-step,
+.process-flow strong,
+.comparison-duration,
+.mono,
+.curriculum-key,
+.curriculum-scroll-help,
+.semester-state,
+.course-number,
+.small-note,
+.work-list-source,
+.curriculum-reference,
+.weights-block p,
+.weights dt,
+.admissions-resources span,
+.footer-brand span,
+.footer-bottom p,
+.footer-bottom span,
+.comparison-summary .comparison-duration,
+.comparison-summary article p.comparison-duration,
+.accreditation .small-note,
+.faq-grid > div > .small-note {
+  font-size: 0.75rem !important;
+}
+/* Área táctil mínima de 24 px de alto (WCAG 2.5.8) para enlaces dentro de párrafos y listas.
+   En elementos en línea, el relleno vertical agranda la zona que se puede tocar sin mover el texto. */
+main p a,
+main li a,
+main dd a,
+.work-offers-link {
+  padding-block: 5px;
 }

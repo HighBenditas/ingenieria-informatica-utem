@@ -2,8 +2,10 @@
 // Datos de admisión (aquí se usa el nombre del proceso, por ejemplo "2027").
 import { admissions } from "../data/site";
 
-// Los cuatro accesos rápidos: destino dentro de la página (href) y texto visible (label).
+// Los cinco accesos rápidos: destino dentro de la página (href) y texto visible (label).
+// "Campo laboral" va primero porque fue lo más pedido en la encuesta (7 de 8 personas).
 const links = [
+  { href: "#campo-laboral", label: "Campo laboral" },
   { href: "#malla", label: "Malla curricular" },
   { href: "#perfil", label: "Perfil de egreso" },
   { href: "#admision", label: `Admisión ${admissions.process}` },
@@ -40,11 +42,11 @@ const links = [
     line-height: 1.4;
     margin-bottom: 14px;
   }
-  /* Lista en 4 columnas iguales, sin viñetas. minmax(0, 1fr) evita que una columna desborde. */
+  /* Lista en 5 columnas iguales, sin viñetas. minmax(0, 1fr) evita que una columna desborde. */
   .quick-links ul {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 12px 24px;
     padding: 0;
     margin: 0;
@@ -80,10 +82,14 @@ const links = [
     background: var(--pale);
     border-bottom-color: var(--blue);
   }
-  /* Hasta 900 px de ancho: 2 columnas. */
+  /* Hasta 900 px de ancho: 2 columnas. El primer acceso (Campo laboral) ocupa toda la fila
+     para que los cinco queden ordenados (1 + 2 + 2). */
   @media (max-width: 900px) {
     .quick-links ul {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .quick-links li:first-child {
+      grid-column: 1 / -1;
     }
   }
   /* Hasta 640 px (móvil): menos espacio entre elementos y letra algo más chica. */

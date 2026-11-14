@@ -1,0 +1,28 @@
+[
+  {
+    "id": "via",
+    "order": 1,
+    "title": "Explora tu vía de ingreso",
+    "text": "Revisa la admisión regular vía Prueba de Acceso a la Educación Superior (PAES). También existen alternativas de Acceso Directo, con sus propios requisitos.",
+    "link": { "href": "https://accesodirecto.utem.cl/", "label": "Conocer Acceso Directo ↗" },
+    "sources": ["admision", "directo"]
+  },
+  {
+    "id": "requisitos",
+    "order": 2,
+    "title": "Revisa los requisitos",
+    "text": "La ficha 2027 informa un promedio mínimo de 458 puntos entre Competencia Lectora y Competencia Matemática 1 (M1). No exige mínimo ponderado. Revisa además las condiciones generales del Sistema de Acceso.",
+    "sources": ["oferta"]
+  },
+  {
+    "id": "calendario",
+    "order": 3,
+    "title": "Ten presente el calendario",
+    "text": "PAES Regular: 30 de noviembre, 1 y 2 de diciembre de 2026. La postulación comienza el 4 de enero de 2027 a las 09:00. Finaliza el 7 de enero a las 13:00, hora de Chile continental.",
+    "link": {
+      "href": "https://demre.cl/calendario/calendario-proceso-2027",
+      "label": "Ver calendario completo ↗"
+    },
+    "sources": ["calendario"]
+  }
+]

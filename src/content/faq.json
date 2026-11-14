@@ -51,5 +51,13 @@
     "question": "¿La acreditación de la universidad es la certificación de la carrera?",
     "answer": "Son reconocimientos distintos. La sección de respaldo identifica por separado la acreditación de UTEM y la certificación de Ingeniería en Informática.",
     "source": "carrera"
+  },
+  {
+    "id": "8",
+    "order": 8,
+    "question": "¿En qué podré trabajar al titularme?",
+    "answer": "En desarrollo de software, sistemas de información, infraestructura y redes, seguridad de la información y gestión de proyectos tecnológicos, en organizaciones públicas, privadas y del tercer sector.",
+    "internalLink": { "href": "#campo-laboral", "label": "Ver el campo laboral" },
+    "source": "carrera"
   }
 ]

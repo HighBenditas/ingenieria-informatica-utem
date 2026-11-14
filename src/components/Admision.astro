@@ -1,8 +1,12 @@
 ---
-// Datos de admisión (proceso, código DEMRE, promedio mínimo, ponderaciones) y generales (URL de admisión).
+// Lee la colección "admision" (src/content/admision.json): los pasos para postular.
+import { getCollection } from "astro:content";
+// Datos de admisión (proceso, código DEMRE, ponderaciones) y generales (URL de admisión).
 import { admissions, site } from "../data/site";
 import Cite from "./Cite.astro";
 import Icon from "./Icon.astro";
+// Ordena los pasos según el campo "order".
+const steps = (await getCollection("admision")).sort((a, b) => a.data.order - b.data.order);
 ---
 
 {/* Sección "Admisión": cómo postular, requisitos, calendario y ponderaciones. */}
@@ -21,46 +25,25 @@ import Icon from "./Icon.astro";
         <strong>{admissions.code}</strong>. <Cite source="oferta" />
       </p>
     </div>
-    {/* Lista numerada con los tres pasos. */}
+    {/* Lista numerada con los pasos (src/content/admision.json). El número se arma con el campo
+        "order" en dos dígitos (01, 02...). Cada paso muestra todas sus citas y, si tiene, un enlace. */}
     <ol class="admissions-steps">
-      {/* Paso 1: vías de ingreso (PAES y Acceso Directo), con dos citas y un enlace externo. */}
-      <li>
-        <span class="step-number">01</span>
-        <h3>Explora tu vía de ingreso</h3>
-        <p>
-          Revisa la admisión regular vía Prueba de Acceso a la Educación
-          Superior (PAES). También existen alternativas de Acceso Directo,
-          con sus propios requisitos. <Cite source="admision" />
-          <Cite source="directo" />
-        </p>
-        <a href="https://accesodirecto.utem.cl/">Conocer Acceso Directo ↗</a>
-      </li>
-      {/* Paso 2: requisito. El promedio mínimo viene de src/data/site.ts. */}
-      <li>
-        <span class="step-number">02</span>
-        <h3>Revisa los requisitos</h3>
-        <p>
-          La ficha 2027 informa un promedio mínimo de{" "}
-          {admissions.minimumAverage} puntos entre Competencia Lectora y Competencia
-          Matemática 1 (M1). No exige mínimo ponderado.
-          Revisa además las condiciones generales del Sistema de
-          Acceso. <Cite source="oferta" />
-        </p>
-      </li>
-      {/* Paso 3: fechas clave del proceso, con cita del calendario DEMRE. */}
-      <li>
-        <span class="step-number">03</span>
-        <h3>Ten presente el calendario</h3>
-        <p>
-          PAES Regular: 30 de noviembre, 1 y 2 de diciembre de 2026.
-          La postulación comienza el 4 de enero de 2027 a las 09:00.
-          Finaliza el 7 de enero a las 13:00, hora de Chile continental.
-          <Cite source="calendario" />
-        </p>
-        <a href="https://demre.cl/calendario/calendario-proceso-2027">
-          Ver calendario completo ↗
-        </a>
-      </li>
+      {steps.map(({ data }) => (
+        <li>
+          <span class="step-number">{String(data.order).padStart(2, "0")}</span>
+          <h3>{data.title}</h3>
+          <p>
+            {data.text}
+            {data.sources.map((source) => (
+              <>
+                {" "}
+                <Cite source={source.id} />
+              </>
+            ))}
+          </p>
+          {data.link && <a href={data.link.href}>{data.link.label}</a>}
+        </li>
+      ))}
     </ol>
     {/* Explica las siglas la primera vez que se usan en las ponderaciones. */}
     <p class="small-note">

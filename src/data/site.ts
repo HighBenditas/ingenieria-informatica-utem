@@ -70,7 +70,6 @@ export const competencies = [
 export const admissions = {
   process: 2027,
   code: "21030",
-  minimumAverage: 458,
   weights: [
     { label: "NEM", value: 10 },
     { label: "Ranking", value: 25 },
@@ -80,6 +79,21 @@ export const admissions = {
     { label: "Ciencias o Historia y Cs. Sociales", value: 10 },
   ],
 };
+// Ficha de datos de la portada (la muestra Hero.astro). Cada dato tiene su etiqueta y una o más
+// líneas de valor; "emphasis" es un número destacado que va antes del texto (por ejemplo "8" semestres).
+export interface CareerFact {
+  label: string;
+  lines: string[];
+  emphasis?: string;
+}
+export const careerFacts: CareerFact[] = [
+  { label: "Duración", emphasis: "8", lines: ["semestres"] },
+  { label: "Jornada", lines: ["Diurna"] },
+  { label: "Título profesional", lines: ["Ingeniera / Ingeniero", "en Informática"] },
+  { label: "Grado académico", lines: ["Licenciada / Licenciado", "en Informática"] },
+  { label: "Sede o campus", lines: [site.campus] },
+  { label: "Código DEMRE", lines: [admissions.code] },
+];
 // Do not publish unsupported figures. Each future indicator must include its year and source.
 // Un indicador de empleabilidad verificado debe traer su valor, su año y el enlace a la fuente.
 export interface VerifiedIndicator {
